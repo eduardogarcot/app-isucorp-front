@@ -6,6 +6,7 @@ import {Router} from '@angular/router';
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.css']
 })
+
 export class NavBarComponent implements OnInit {
   public href = '';
   public buttonLabel = '';

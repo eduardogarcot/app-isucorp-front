@@ -1,0 +1,31 @@
+.contactDataContainer{
+  display: flex;
+  margin:1%;
+  background-color: #eeeeee;
+}
+
+h5{
+  display: flex;
+  flex-grow: 2;
+  padding: 0.5%;
+  margin: 0.5%;
+  font-weight: lighter;
+  align-items: center;
+}
+
+.button{
+  color: #eff3f6;
+  flex-grow: 1;
+  margin: 1%;
+  background-color: #c2c3c4;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  padding: 1%;
+}
+
+@media screen and (max-width: 768px){
+  .contactDataContainer{
+    width: 98%;
+  }
+}

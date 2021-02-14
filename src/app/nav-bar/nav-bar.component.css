@@ -1,0 +1,54 @@
+.customNavBar{
+  width:100%;
+  background-color: #333333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.companyName{
+  color: #eeeeee;
+  font-size: 42pt;
+}
+.nameDescription{
+  margin: 2%;
+  font-size: medium;
+  color: #eeeeee;
+  display:flex;
+  align-content: center;
+  flex-direction: column;
+
+}
+@media screen and (max-width: 768px){
+  .companyName{
+    font-size: larger;
+  }
+  .nameDescription{
+    display: none;
+  }
+}
+
+.menuNav{
+  display: flex;
+  background-color: #e6ebf1;
+  justify-content: center;
+  align-items: center;
+  align-content: space-evenly;
+  flex-direction: row;
+}
+.menuDescription{
+  margin:1%;
+  width: 50%;
+  font-size: smaller;
+}
+.menuName{
+  width: 20%;
+  color: crimson;
+}
+.menuBtn{
+  width: 15%;
+  background-color: #c2c3c4;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  padding: 1%;
+}

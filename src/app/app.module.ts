@@ -11,6 +11,7 @@ import { ReservationListComponent } from './reservation-list/reservation-list.co
 import { ContactFormComponent } from './contact-form/contact-form.component';
 import {ReactiveFormsModule} from '@angular/forms';
 
+// @ts-ignore
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,8 +25,7 @@ import {ReactiveFormsModule} from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
-  ],
+    ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent]
 })

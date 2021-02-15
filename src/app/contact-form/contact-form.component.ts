@@ -17,10 +17,13 @@ export class ContactFormComponent implements OnInit {
   onSubmit(): void {
     console.log(this.form.getRawValue());
     console.log(this.form.hasError);
+    this.form.get('name').setValue('Federico');
   }
+
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
 }

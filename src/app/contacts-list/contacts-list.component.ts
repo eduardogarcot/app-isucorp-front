@@ -7,7 +7,7 @@ import {Contact} from '../common/contact';
   styleUrls: ['./contacts-list.component.css']
 })
 export class ContactsListComponent implements OnInit{
-  public contacts: ( Contact )[];
+  public contacts: (Contact)[];
 
   ngOnInit(): void {
     this.contacts = [

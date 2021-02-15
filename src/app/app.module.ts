@@ -7,6 +7,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { ContactItemComponent } from './contact-item/contact-item.component';
 import { ReservationItemComponent } from './reservation-item/reservation-item.component';
 import { ContactsListComponent } from './contacts-list/contacts-list.component';
+import { ReservationListComponent } from './reservation-list/reservation-list.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { ContactsListComponent } from './contacts-list/contacts-list.component';
     NavBarComponent,
     ContactItemComponent,
     ReservationItemComponent,
-    ContactsListComponent
+    ContactsListComponent,
+    ReservationListComponent
   ],
   imports: [
     BrowserModule,

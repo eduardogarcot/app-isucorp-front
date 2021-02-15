@@ -10,7 +10,7 @@ import { ContactsListComponent } from './contacts-list/contacts-list.component';
 import { ReservationListComponent } from './reservation-list/reservation-list.component';
 import { ContactFormComponent } from './contact-form/contact-form.component';
 import {ReactiveFormsModule} from '@angular/forms';
-import {RouterModule} from '@angular/router';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 // @ts-ignore
 @NgModule({
@@ -27,6 +27,7 @@ import {RouterModule} from '@angular/router';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    CKEditorModule
     ],
   providers: [],
   bootstrap: [AppComponent]

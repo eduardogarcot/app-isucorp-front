@@ -1,0 +1,8 @@
+<div class="container">
+  <div *ngFor="let reservation of reservations">
+    <app-reservation-item [reservation]="reservation"></app-reservation-item>
+  </div>
+  <div class="pagination-item">
+    <p>Aqui va la pagination</p>
+  </div>
+</div>

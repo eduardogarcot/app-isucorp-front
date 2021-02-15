@@ -27,10 +27,7 @@ import {RouterModule} from '@angular/router';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    RouterModule.forRoot([
-      {path: '', component: ReservationListComponent},
-      {path: 'contact-list', component: ContactsListComponent},
-    ])],
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

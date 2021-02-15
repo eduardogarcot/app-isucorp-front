@@ -16,8 +16,12 @@ export class ContactFormComponent implements OnInit {
 
   onSubmit(): void {
     console.log(this.form.getRawValue());
-    console.log(this.form.hasError);
-    this.form.get('name').setValue('Federico');
+    console.log(this.form.controls);
+    console.log(this.form.valid);
+
+    // for (const item of this.form.controls){
+    //   for()
+    // }
   }
 
   constructor() { }

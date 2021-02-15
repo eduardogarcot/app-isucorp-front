@@ -10,6 +10,14 @@
   margin-top: 1%;
 }
 
+.alert-danger{
+  width: 70%;
+  margin-left: 15%;
+  border: 2px solid red;
+  text-align: center;
+  background-color: #c2c3c4;
+}
+
 .inputForm{
   margin: 1%;
   display: flex;
@@ -43,6 +51,10 @@ img{ display: flex; }
   text-align: center;
   cursor: pointer;
   padding: 1%;
+}
+.btn[disabled]{
+  background-color: lightgrey;
+  cursor: default ;
 }
 
 .button{

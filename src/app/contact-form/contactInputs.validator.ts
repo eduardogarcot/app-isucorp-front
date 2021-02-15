@@ -6,8 +6,8 @@ export class InputItemsValidator{
     else {return {isNotAPhone: true}; }
   }
 
-  static isAValidBirthDate(control: AbstractControl): ValidationErrors | null {
-    if (Date.now() >= (control.value as Date).getTime()) {return null; }
+  static isValidBirthDate(control: AbstractControl): ValidationErrors | null {
+    if (Date.now() >= new Date((control.value as string)).getTime()) {return null; }
     return {isNotValidBirthDate: true};
   }
 }

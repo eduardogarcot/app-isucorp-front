@@ -41,10 +41,20 @@
           type="text"
           formControlName="birthDate"
           id="birthDate"
-          class="input Date" >
+          class="input Date">
       </div>
     </div>
+  <div class="alert-danger" *ngIf="!form.valid && !form.untouched">
+    <h4 *ngIf="form.get('name').errors?.required && form.get('name').touched">Name is Required</h4>
+    <h4 *ngIf="form.get('contactType').errors?.required && form.get('contactType').touched">Contact Type is Required</h4>
+    <h4 *ngIf="form.get('phoneNumber').errors?.required && form.get('phoneNumber').touched">Name is Required</h4>
+    <h4 *ngIf="form.get('phoneNumber').errors?.isNotAPhone && form.get('phoneNumber').touched ">This number is not valid. Please fill the form again</h4>
+    <h4 *ngIf="form.get('phoneNumber').errors?.minlength">Number Phone requires at least {{form.get('phoneNumber').errors.minlength.requiredLength}} numbers</h4>
+    <h4 *ngIf="form.get('phoneNumber').errors?.maxlength">Number Phone requires no more than {{form.get('phoneNumber').errors.maxlength.requiredLength}} numbers</h4>
+    <h4 *ngIf="form.get('birthDate').errors?.minlength"> Birth Date invalid. Fill it again or leave empty</h4>
+    <h4 *ngIf="form.get('birthDate').errors?.required"> Birth Date is required</h4>
+  </div>
     <div class="container button">
-      <button class="btn" type="submit">Submit</button>
+      <button class="btn" type="submit" [disabled]="!form.valid">Submit</button>
     </div>
 </form>

@@ -37,13 +37,18 @@ img{ display: flex; }
   color: #eff3f6;
   border: 1px solid lightgrey;
   height: 50%;
-  margin-left: 1%;
+  margin: 2%;
   background-color:red;
-  justify-content: center;
+  justify-content: flex-end;
   text-align: center;
   cursor: pointer;
   padding: 1%;
 }
+
+.button{
+  justify-content: flex-end;
+  background-color: #eeeeee;
+  }
 @media screen and (max-width : 1200px){
   .container{
     width: 100%;

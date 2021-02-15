@@ -54,6 +54,9 @@
     <h4 *ngIf="form.get('birthDate').errors?.minlength"> Birth Date invalid. Fill it again or leave empty</h4>
     <h4 *ngIf="form.get('birthDate').errors?.required"> Birth Date is required</h4>
   </div>
+  <div class="textEditor">
+    <ckeditor [editor]="Editor" data="<p>Hello, world!</p>"></ckeditor>
+  </div>
     <div class="container button">
       <button class="btn" type="submit" [disabled]="!form.valid">Submit</button>
     </div>

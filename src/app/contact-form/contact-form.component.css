@@ -17,7 +17,11 @@
   text-align: center;
   background-color: #c2c3c4;
 }
-
+.textEditor{
+  width: 70%;
+  margin-top: 1%;
+  text-align: center;
+}
 .inputForm{
   margin: 1%;
   display: flex;

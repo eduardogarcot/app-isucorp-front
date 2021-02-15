@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {InputItemsValidator} from './contactInputs.validator';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
   selector: 'app-contact-form',
@@ -8,6 +9,7 @@ import {InputItemsValidator} from './contactInputs.validator';
   styleUrls: ['./contact-form.component.css']
 })
 export class ContactFormComponent implements OnInit {
+  public Editor = ClassicEditor;
   form = new FormGroup( {
     name: new FormControl('', [Validators.required]),
     contactType: new FormControl('', [Validators.required]),

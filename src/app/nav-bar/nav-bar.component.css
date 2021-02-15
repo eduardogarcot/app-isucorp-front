@@ -29,7 +29,7 @@
 
 .menuNav{
   display: flex;
-  background-color: #e6ebf1;
+  background-color: white;
   justify-content: center;
   align-items: center;
   align-content: space-evenly;

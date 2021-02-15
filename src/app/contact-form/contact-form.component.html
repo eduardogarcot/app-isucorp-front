@@ -1,0 +1,47 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="flexContainer">
+      <div class="child">
+        <img src="../../assets/img/contact.png" alt="">
+        <input
+          type="text"
+          formControlName="name"
+          id="name"
+          class="inputName chorradas"
+          placeholder="Contact Name ...">
+      </div>
+      <div class="child">
+        <img src="../../assets/img/type.png" alt="">
+        <select
+          required
+          formControlName="contactType"
+          id="contactType"
+        >
+          <option value="" disabled selected hidden>Contact Type</option>
+          <option value="0">Contact Type 1</option>
+          <option value="1">Contact Type 2</option>
+          <option value="2">Contact Type 3</option>
+        </select>
+      </div>
+      <div class="child">
+      <img src="../../assets/img/phone.png" alt="">
+      <input
+        type="text"
+        formControlName="phoneNumber"
+        id="phoneNumber"
+        class="inputPhone"
+        placeholder="Phone:    -    -   " >
+    </div>
+    <div class="child">
+      <img src="../../assets/img/calendar.png" alt="">
+      <input
+        onfocus="(this.type='date')"
+        onblur="(this.type='text')"
+        placeholder="Birth Date"
+        type="text"
+        formControlName="birthDate"
+        id="birthDate"
+        class="inputBirthday" >
+    </div>
+  </div>
+  <button class="btn btn-primary" type="submit">Submit</button>
+</form>

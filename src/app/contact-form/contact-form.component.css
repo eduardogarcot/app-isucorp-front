@@ -1,0 +1,72 @@
+.flexContainer{
+  width: 70%;
+  margin-left: 15%;
+  height: 15%;
+  border: gray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+select{
+  border: 0px;
+}
+select:required:invalid{
+color: grey;
+
+}
+option[value=""][disabled]{
+display: none;
+}
+option{
+color: black;
+}
+
+.label{
+color: grey;
+}
+
+.child{
+height: 10%;
+background-color: azure;
+margin: 1%;
+display: flex;
+border: 1px solid grey;
+}
+
+img{
+height: auto;
+}
+
+input{
+  border-width: 0;
+  height: auto;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+@media screen and (max-width : 600px){
+  .flexContainer{
+    width: auto;
+    height: auto;
+    background-color:lightcoral;
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .child{
+    width: 98%;
+    margin: 1%;
+    display: flex;
+  }
+
+  input, select{
+    padding-left: 2%;
+    display: flex;
+    flex-grow: 1;
+  }
+
+}

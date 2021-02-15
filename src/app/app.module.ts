@@ -8,6 +8,8 @@ import { ContactItemComponent } from './contact-item/contact-item.component';
 import { ReservationItemComponent } from './reservation-item/reservation-item.component';
 import { ContactsListComponent } from './contacts-list/contacts-list.component';
 import { ReservationListComponent } from './reservation-list/reservation-list.component';
+import { ContactFormComponent } from './contact-form/contact-form.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,11 +18,13 @@ import { ReservationListComponent } from './reservation-list/reservation-list.co
     ContactItemComponent,
     ReservationItemComponent,
     ContactsListComponent,
-    ReservationListComponent
+    ReservationListComponent,
+    ContactFormComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

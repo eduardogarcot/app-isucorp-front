@@ -10,6 +10,7 @@ import { ContactsListComponent } from './contacts-list/contacts-list.component';
 import { ReservationListComponent } from './reservation-list/reservation-list.component';
 import { ContactFormComponent } from './contact-form/contact-form.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import {RouterModule} from '@angular/router';
 
 // @ts-ignore
 @NgModule({
@@ -25,7 +26,11 @@ import {ReactiveFormsModule} from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule],
+    ReactiveFormsModule,
+    RouterModule.forRoot([
+      {path: '', component: ReservationListComponent},
+      {path: 'contact-list', component: ContactsListComponent},
+    ])],
   providers: [],
   bootstrap: [AppComponent]
 })

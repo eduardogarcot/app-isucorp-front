@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Contact} from '../common/contact';
 import _ from 'underscore';
-
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-contacts-list',
@@ -14,11 +14,21 @@ export class ContactsListComponent implements OnInit{
   public contactsToShow: (Contact) [];
   @Input() numberOfItemsPerPage: number;
   public numberOfPages: number;
+  form = new FormGroup({sortOrder: new FormControl('', )});
 
-  sortItemsBy(items: any[], category: string): any[]{
-     return _.sortBy( items, category );
+  onSubmit(): void{
+    console.log(this.form);
+    const reverse = (this.form.get('sortOrder').value as string).indexOf(' ') >= 0;
+    console.log(reverse);
   }
 
+  sortItemsBy(items: any[], category: string, reverse: boolean = false): any[]{
+     return reverse ? _.sortBy( items, category ).reverse() : _.sortBy( items, category );
+  }
+
+  isReverseSort(): boolean{
+    return (this.form.get('sortOrder').value as string).indexOf(' ') >= 0;
+  }
   selectItemToShow(items: any[], pageNumber: number): any[] {
     const newContacts: (any)[] = [];
     for (let i = (pageNumber - 1) * this.numberOfItemsPerPage ; i < this.numberOfItemsPerPage ; i++)
@@ -26,7 +36,7 @@ export class ContactsListComponent implements OnInit{
       if (i === items.length) { break; }
       newContacts.push(items[i]);
     }
-    return this.sortItemsBy(newContacts, 'birthDate');
+    return this.sortItemsBy(newContacts, 'birthDate', this.isReverseSort());
   }
 
   ngOnInit(): void {
@@ -39,6 +49,4 @@ export class ContactsListComponent implements OnInit{
     ];
     this.contactsToShow = this.selectItemToShow(this.contacts, 1);
   }
-
-
 }

@@ -5,6 +5,13 @@
   padding: 1%;
   background-color:white;
 }
+.input-sortOrder{
+  margin: 1%;
+  display: flex;
+  flex-direction: row;
+  border: 1px solid grey;
+  box-sizing: border-box;
+}
 @media screen and (max-width: 768px){
   .container{
     width: 100%;

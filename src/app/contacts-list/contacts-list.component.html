@@ -1,6 +1,19 @@
-
-
 <div class="container">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <select
+      formControlName="sortOrder"
+      id="sortOrder"
+      class="input-sortOrder"
+    >
+      <option selected="selected" value="name">Sort by Name Ascending</option>
+      <option value="name r">Sort by Name Descending</option>
+      <option value="birthDate">Sort By Birth Date Ascending</option>
+      <option value="birthDate a">Sort By Birth Date Descending</option>
+  </select>
+    <button type="submit">Submit</button>
+  </form>
+</div>
+  <div class="container">
     <div *ngFor="let contact of contactsToShow">
       <app-contact-item [contact]="contact"></app-contact-item>
     </div>

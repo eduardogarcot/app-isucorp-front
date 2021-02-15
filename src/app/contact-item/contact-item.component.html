@@ -1,8 +1,10 @@
 <div class="contactItem">
-  <h5>{{contact.name}}</h5>
-  <h5>{{contact.phoneNumber}}</h5>
-  <h5>{{contact.contactType}}</h5>
-  <h5>{{contact.birthDate.toDateString()}}</h5>
+  <div class="contac-tName">
+    <p class="cName">{{contact.name}}</p>
+    <p class="cType">{{contact.contactType}}</p>
+  </div>
+  <p class="contact-property">{{contact.phoneNumber}}</p>
+  <p class="contact-property">{{contact.birthDate.toDateString()}}</p>
   <div class="button editBtn">Edit</div>
   <div class="button deleteBtn">Delete</div>
 </div>

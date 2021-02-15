@@ -4,21 +4,40 @@
   margin-top: 1%;
   margin-right: 1%;
   background-color: #eeeeee;
+  align-items: center;
+  padding-left: 1%;
+  padding-right: 1%;
 }
-
-h5{
+.contac-tName{
   display: flex;
   flex-grow: 2;
-  padding: 0.5%;
-  margin: 0.5%;
-  font-weight: lighter;
-  align-items: center;
+  flex-direction: column;
+}
+.cName{
+  margin:0;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  font-size: large;
+  font-weight: bolder;
+}
+.cType{
+  margin:0;
+  margin-bottom: 5%;
+}
+.contact-property{
+  display: flex;
+  flex-grow: 3;
+  width: 20%;
+  margin-left: 1%;
+  margin-right: 1%;
+  font-size: large;
+  align-items: center
 }
 
 .button{
   color: #eff3f6;
-  flex-grow: 1;
-  margin: 1%;
+  height: 50%;
+  margin-left: 1%;
   background-color: #c2c3c4;
   justify-content: center;
   text-align: center;

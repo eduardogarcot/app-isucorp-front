@@ -1,8 +1,8 @@
 <div class="reservation-item">
   <h5>{{reservation.name}}</h5>
-  <h5>{{reservation.reservationDate.toUTCString()}}</h5>
+  <h5>{{reservation.reservationDate | date: 'EEE MMM d, y, h:mm a'}}</h5>
   <h5>{{reservation.rate}}</h5>
-  <h5 *ngIf="reservation.isfavorite">Favorite ;)</h5>
+  <h5 *ngIf="reservation.isfavorite"><strong>Favorite ;)</strong></h5>
   <h5 *ngIf="!reservation.isfavorite">Not favorite</h5>
   <div class="button editBtn">Edit</div>
   <div class="button deleteBtn">Delete</div>

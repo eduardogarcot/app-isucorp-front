@@ -14,7 +14,7 @@
 </div>
 <div class="container">
   <div *ngFor="let reservation of reservationsToShow">
-    <app-reservation-item [reservation]="reservationsToShow" (deleteReservation)="onDeleteReservation($event)"></app-reservation-item>
+    <app-reservation-item [reservation]="reservation" (deleteReservation)="onDeleteReservation($event)"></app-reservation-item>
   </div>
   <div class="pagination-item">
     <p>Aqui va la pagination</p>

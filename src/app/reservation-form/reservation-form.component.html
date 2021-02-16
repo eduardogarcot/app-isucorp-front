@@ -1,1 +1,32 @@
-<p>reservation-form works!</p>
+<form  [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="container">
+    <div class="inputForm">
+      <img src="../../assets/img/contact.png" alt="">
+      <input
+        type="text"
+        formControlName="name"
+        id="name"
+        class="input Name"
+        placeholder="Contact Name ...">
+    </div>
+    <div class="inputForm">
+      <img src="../../assets/img/calendar.png" alt="">
+      <input
+        onfocus="(this.type='date')"
+        onblur="(this.type='text')"
+        placeholder="Birth Date"
+        type="text"
+        formControlName="birthDate"
+        id="birthDate"
+        class="input Date">
+    </div>
+  </div>
+  <div class="alert-danger" *ngIf="!form.valid && !form.untouched">
+    <h4 *ngIf="form.get('name').errors?.required && form.get('name').touched">Name is Required</h4>
+    <h4 *ngIf="form.get('birthDate').errors?.isValidBirthDate"> Reservation Date invalid. La fecha de la reservacion no puede ser anterior a este momento</h4>
+    <h4 *ngIf="form.get('birthDate').errors?.required && form.get('birthDate').touched"> Reservation Date is required</h4>
+  </div>
+  <div class="container button">
+    <button class="btn" type="submit" [disabled]="!form.valid">Submit</button>
+  </div>
+</form>

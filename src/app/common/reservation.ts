@@ -1,8 +1,8 @@
 export interface Reservation {
   reservationId: number;
-  createdDate: Date;
+  cratedDate: Date;
   reservationDate: Date;
-  isfavorite: boolean;
+  isFavorite: boolean;
   rate: number;
   contactId: number;
   contactName: string;

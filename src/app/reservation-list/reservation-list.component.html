@@ -1,6 +1,20 @@
 <div class="container">
+  <form [formGroup]="form">
+    <select
+      formControlName="sortOrder"
+      id="sortOrder"
+      class="input-sortOrder"
+    >
+      <option value="name">Sort by Name Ascending</option>
+      <option value="name r">Sort by Name Descending</option>
+      <option value="birthDate">Sort By Birth Date Ascending</option>
+      <option value="birthDate a">Sort By Birth Date Descending</option>
+    </select>
+  </form>
+</div>
+<div class="container">
   <div *ngFor="let reservation of reservations">
-    <app-reservation-item [reservation]="reservation"></app-reservation-item>
+    <app-reservation-item [reservation]="reservation" (deleteReservation)="onDeleteReservation($event)"></app-reservation-item>
   </div>
   <div class="pagination-item">
     <p>Aqui va la pagination</p>

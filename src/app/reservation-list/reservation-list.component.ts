@@ -16,7 +16,6 @@ export class ReservationListComponent{
   constructor(private http: HttpClient){
     this.http.get(urlPath).subscribe(response => {
       this.reservations = Object.keys(response).map(key => {
-        console.log(response);
         return this.getReservation(response[key]) as Reservation;
       });
       this.reservationsToShow = this.selectItemToShow(this.reservations, 1);

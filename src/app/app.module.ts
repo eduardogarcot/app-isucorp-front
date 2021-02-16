@@ -12,6 +12,7 @@ import { ContactFormComponent } from './contact-form/contact-form.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import {HttpClientModule} from '@angular/common/http';
+import { ReservationFormComponent } from './reservation-form/reservation-form.component';
 
 // @ts-ignore
 @NgModule({
@@ -22,7 +23,8 @@ import {HttpClientModule} from '@angular/common/http';
     ReservationItemComponent,
     ContactsListComponent,
     ReservationListComponent,
-    ContactFormComponent
+    ContactFormComponent,
+    ReservationFormComponent
   ],
   imports: [
     BrowserModule,

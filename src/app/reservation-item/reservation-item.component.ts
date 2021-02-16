@@ -1,5 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Reservation} from '../common/reservation';
+
 
 @Component({
   selector: 'app-reservation-item',
@@ -7,6 +8,10 @@ import {Reservation} from '../common/reservation';
   styleUrls: ['./reservation-item.component.css']
 })
 export class ReservationItemComponent{
-
+  @Output() deleteReservation = new EventEmitter<Reservation>();
   @Input () reservation: Reservation;
+
+  onDeleteReservation(data: Reservation): void{
+    this.deleteReservation.emit(data);
+  }
 }

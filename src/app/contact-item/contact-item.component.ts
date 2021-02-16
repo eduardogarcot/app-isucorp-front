@@ -13,4 +13,5 @@ export class ContactItemComponent {
   onDeleteContact(data: Contact): void {
     this.deleteContact.emit(data);
   }
+
 }

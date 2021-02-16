@@ -1,11 +1,11 @@
 <div class="reservation-item">
   <div class="reservation-NameDate">
-    <p class="rName">{{reservation.name}}</p>
+    <p class="rName">{{reservation.contactName}}</p>
     <p class="rDate">{{reservation.reservationDate | date: 'EEE MMM d, y, h:mm a'}}</p>
   </div>
-  <p class="contact-property" *ngIf="reservation.isfavorite"><strong>Favorite ;)</strong></p>
+  <p class="contact-property" *ngIf="reservation.isfavorite"><strong>Favorite)</strong></p>
   <p class="contact-property" *ngIf="!reservation.isfavorite">Not favorite</p>
   <p class="contact-property">{{reservation.rate}}</p>
-  <div class="button editBtn">Edit</div>
-  <div class="button deleteBtn">Delete</div>
+  <div class="button editBtn" >Edit</div>
+  <div class="button deleteBtn" (click)="onDeleteReservation(reservation)">Delete</div>
 </div>

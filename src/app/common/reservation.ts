@@ -1,7 +1,9 @@
 export interface Reservation {
-    id: number;
-    name: string;
-    rate: number;
-    isfavorite: boolean;
-    reservationDate: Date;
+  reservationId: number;
+  createdDate: Date;
+  reservationDate: Date;
+  isfavorite: boolean;
+  rate: number;
+  contactId: number;
+  contactName: string;
 }

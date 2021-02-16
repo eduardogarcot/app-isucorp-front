@@ -1,9 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Contact} from '../common/contact';
 import _ from 'underscore';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
-
+import {FormControl, FormGroup} from '@angular/forms';
+import {HttpClient} from '@angular/common/http';
+const urlPath = 'https://localhost:5001/api/contacts';
 
 @Component({
   selector: 'app-contacts-list',
@@ -12,35 +12,41 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
 })
 
 export class ContactsListComponent implements OnInit{
-  public contacts: object[];
-  public contactsToShow: (Contact) [];
-  @Input() numberOfItemsPerPage: number;
-  public numberOfPages: number;
-  form = new FormGroup({sortOrder: new FormControl('', )});
 
-  constructor(http: HttpClient){
-    http.get('https://localhost:5001/api/contacts').subscribe(response => {
+  constructor(private http: HttpClient){
+    this.http.get(urlPath).subscribe(response => {
       this.contacts = Object.keys(response).map(key => {
-        let item = response[key];
+        const item = response[key];
         item.birthDate = new Date((response[key].birthDate).substring(0, 10) );
         return (item as Contact);
         });
       this.contactsToShow = this.selectItemToShow(this.contacts, 1);
     });
     }
+  public contacts: object[];
+  public contactsToShow: (Contact) [];
+  @Input() numberOfItemsPerPage: number;
+  public numberOfPages: number;
+  form = new FormGroup({sortOrder: new FormControl('', )});
+
+  static sortItemsBy(items: any[], category: string, reverse: boolean = false): any[]{
+     return reverse ? _.sortBy( items, category ).reverse() : _.sortBy( items, category );
+  }
 
   onDeleteContact(data): void {
-    let itemToDeleteId = data;
     console.log(data);
+    const newURL = urlPath + '/' + data.contactId;
+    console.log('Length Before' + this.contacts.length);
+    this.http.delete(newURL).subscribe(() => {
+      const index = this.contacts.indexOf(data);
+      this.contacts.splice(index, 1);
+    });
+    console.log('Length After' + this.contacts.length);
   }
   onSubmit(): void{
     console.log(this.form);
     const reverse = (this.form.get('sortOrder').value as string).indexOf(' ') >= 0;
     console.log(reverse);
-  }
-
-  sortItemsBy(items: any[], category: string, reverse: boolean = false): any[]{
-     return reverse ? _.sortBy( items, category ).reverse() : _.sortBy( items, category );
   }
 
   isReverseSort(): boolean{
@@ -54,20 +60,9 @@ export class ContactsListComponent implements OnInit{
       if (i === items.length) { break; }
       newContacts.push(items[i]);
     }
-    return this.sortItemsBy(newContacts, 'birthDate', this.isReverseSort());
+    return ContactsListComponent.sortItemsBy(newContacts, 'birthDate', this.isReverseSort());
   }
-  onChange(): void{
 
-  }
   ngOnInit(): void {
-    // this.contacts = [
-    //   {name: 'Felipe Garcia', phoneNumber: 18008976895, contactType: 'Contact Type 1', birthDate: new Date(1996, 11, 27)},
-    //   {name: 'Roberto Otaola', phoneNumber: 18008976895, contactType: 'Contact Type 2', birthDate: new Date(1996, 11, 17)},
-    //   {name: 'Carlo Montalvo', phoneNumber: 18008976895, contactType: 'Contact Type 1', birthDate: new Date(1996, 11, 11)},
-    //   {name: 'Magaly Perez', phoneNumber: 18008976895, contactType: 'Contact Type 3', birthDate: new Date(1996, 11, 17)},
-    //   {name: 'Yulieski Gonzalez', phoneNumber: 18008976895, contactType: 'Contact Type 4', birthDate: new Date(2006, 11, 7)}
-    // ];
-    //
-    // this.contactsToShow = this.selectItemToShow(this.contacts, 1);
-  }
+    }
 }

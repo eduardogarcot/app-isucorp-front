@@ -11,6 +11,7 @@ import { ReservationListComponent } from './reservation-list/reservation-list.co
 import { ContactFormComponent } from './contact-form/contact-form.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import {HttpClientModule} from '@angular/common/http';
 
 // @ts-ignore
 @NgModule({
@@ -27,7 +28,8 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    CKEditorModule
+    CKEditorModule,
+    HttpClientModule,
     ],
   providers: [],
   bootstrap: [AppComponent]

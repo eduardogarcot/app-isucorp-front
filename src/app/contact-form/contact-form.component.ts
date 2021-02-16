@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
-import {InputItemsValidator} from './contactInputs.validator';
+import {InputItemsValidator} from '../common/Inputs.validator';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {HttpClient} from '@angular/common/http';
 
@@ -11,6 +11,8 @@ import {HttpClient} from '@angular/common/http';
 })
 
 export class ContactFormComponent implements OnInit {
+  constructor(private http: HttpClient) { }
+
   public Editor = ClassicEditor;
 
   form = new FormGroup( {
@@ -18,7 +20,7 @@ export class ContactFormComponent implements OnInit {
     contactType: new FormControl('', [Validators.required]),
     // tslint:disable-next-line:max-line-length
     phoneNumber: new FormControl('', [Validators.required, InputItemsValidator.isAPhoneNumber, Validators.minLength(7), Validators.maxLength(12)]),
-    birthDate: new FormControl('', [Validators.required, InputItemsValidator.isValidBirthDate])
+    birthDate: new FormControl('', [Validators.required, InputItemsValidator.isDateBeforeToday])
   });
 
   onSubmit(): void {
@@ -34,8 +36,6 @@ export class ContactFormComponent implements OnInit {
         console.log(response);
       });
   }
-
-  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
 

@@ -47,7 +47,7 @@
   <div class="alert-danger" *ngIf="!form.valid && !form.untouched">
     <h4 *ngIf="form.get('name').errors?.required && form.get('name').touched">Name is Required</h4>
     <h4 *ngIf="form.get('contactType').errors?.required && form.get('contactType').touched">Contact Type is Required</h4>
-    <h4 *ngIf="form.get('phoneNumber').errors?.required && form.get('phoneNumber').touched">Name is Required</h4>
+    <h4 *ngIf="form.get('phoneNumber').errors?.required && form.get('phoneNumber').touched">Phone Number is Required</h4>
     <h4 *ngIf="form.get('phoneNumber').errors?.isNotAPhone && form.get('phoneNumber').touched ">This number is not valid. Please fill the form again</h4>
     <h4 *ngIf="form.get('phoneNumber').errors?.minlength">Number Phone requires at least {{form.get('phoneNumber').errors.minlength.requiredLength}} numbers</h4>
     <h4 *ngIf="form.get('phoneNumber').errors?.maxlength">Number Phone requires no more than {{form.get('phoneNumber').errors.maxlength.requiredLength}} numbers</h4>

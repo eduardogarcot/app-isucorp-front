@@ -16,7 +16,8 @@ export class ReservationListComponent{
   public flag = false;
   public reservations: Reservation[];
   public reservationsToShow: Reservation[];
-  @Input() numberOfItemsPerPage: number;
+  // @Input()
+  private numberOfItemsPerPage: 5;
   public numberOfPages: number;
   form = new FormGroup({sortOrder: new FormControl('', )});
 
@@ -26,6 +27,7 @@ export class ReservationListComponent{
 
   constructor(private http: HttpClient){
     this.reservations = [] ;
+    this.numberOfItemsPerPage = 5;
     this.http.get(urlPath).subscribe(response => {
       let value = Object.keys(response).length;
       Object.keys(response).map(key => {

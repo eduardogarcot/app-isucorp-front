@@ -20,12 +20,15 @@ export class ContactsListComponent implements OnInit{
         item.birthDate = new Date((response[key].birthDate).substring(0, 10) );
         return (item as Contact);
         });
+      this.numberOfItemsPerPage = 5;
       this.contactsToShow = this.selectItemToShow(this.contacts, 1);
+      console.log(this.contactsToShow);
     });
     }
   public contacts: object[];
   public contactsToShow: (Contact) [];
-  @Input() numberOfItemsPerPage: number;
+  // @Input()
+  private numberOfItemsPerPage: number ;
   public numberOfPages: number;
   form = new FormGroup({sortOrder: new FormControl('', )});
 
@@ -64,5 +67,5 @@ export class ContactsListComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    }
+  }
 }

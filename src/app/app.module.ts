@@ -13,6 +13,9 @@ import {ReactiveFormsModule} from '@angular/forms';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import {HttpClientModule} from '@angular/common/http';
 import { ReservationFormComponent } from './reservation-form/reservation-form.component';
+import {RouterModule} from '@angular/router';
+import {ContactService} from './services/contact.service';
+import {ReservationService} from './services/reservation.service';
 
 // @ts-ignore
 @NgModule({
@@ -32,8 +35,19 @@ import { ReservationFormComponent } from './reservation-form/reservation-form.co
     ReactiveFormsModule,
     CKEditorModule,
     HttpClientModule,
+    RouterModule.forRoot(
+      [
+        { path: 'contacts-list', component: ContactsListComponent},
+        { path: '', component: ReservationListComponent},
+        { path: 'contact-form', component: ContactFormComponent},
+        { path: 'reservation-form', component: ReservationFormComponent}
+      ]
+    )
     ],
-  providers: [],
+  providers: [
+    ContactService,
+    ReservationService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

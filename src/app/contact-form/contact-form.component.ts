@@ -11,7 +11,9 @@ import {HttpClient} from '@angular/common/http';
 })
 
 export class ContactFormComponent implements OnInit {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+
+  }
 
   public Editor = ClassicEditor;
 
@@ -30,7 +32,6 @@ export class ContactFormComponent implements OnInit {
       phoneNumber: this.form.get('phoneNumber').value,
       birthDate: new Date((this.form.get('birthDate').value as string))
     };
-    console.log(item);
     this.http.post('https://localhost:5001/api/contacts', item)
       .subscribe( response => {
         console.log(response);
@@ -38,7 +39,6 @@ export class ContactFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
   }
 
 }

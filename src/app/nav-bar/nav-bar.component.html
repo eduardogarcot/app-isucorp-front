@@ -1,5 +1,5 @@
 <nav class="nav nav-justified customNavBar">
-  <h1 class="companyName"><strong>ISU</strong>Corp</h1>
+  <h1 class="companyName" ><strong>ISU</strong>Corp</h1>
   <p class="nameDescription">World Class<br>Software Development</p>
   </nav>
 <nav class="nav nav-justified menuNav">
@@ -8,5 +8,11 @@
     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque beatae consequuntur debitis et facilis,
     fuga harum impedit ipsum molestiae nulla.
   </p>
-  <div class="menuBtn" >{{buttonLabel}}</div>
+<!--  <div class="menuBtn" [routerLink]="routerLink">{{buttonLabel}}</div>-->
+</nav>
+<nav class="nav nav-justified menuNav" >
+  <a class="menuBtn" routerLink="/reservation-form">Create a Reservation</a>
+  <a class="menuBtn" routerLink="/contact-form">Create a Contact</a>
+  <a class="menuBtn" routerLink="/">Reservations List</a>
+  <a class="menuBtn" routerLink="/contacts-list">Contacts List </a>
 </nav>

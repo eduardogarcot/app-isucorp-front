@@ -13,7 +13,7 @@
   </form>
 </div>
 <div class="container">
-  <div *ngFor="let reservation of reservationsToShow">
+  <div *ngFor="let reservation of reservations">
     <app-reservation-item [reservation]="reservation" (deleteReservation)="onDeleteReservation($event)"></app-reservation-item>
   </div>
   <div class="pagination-item">

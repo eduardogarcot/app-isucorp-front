@@ -1,0 +1,33 @@
+import { Injectable } from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ReservationService {
+  private url = 'https://localhost:5001/api/reservations';
+
+  constructor(private http: HttpClient) { }
+
+  // tslint:disable-next-line:typedef
+  getReservations() {
+    return this.http.get(this.url);
+  }
+  // tslint:disable-next-line:typedef
+  getReservation(id: number ) {
+    return this.http.get(this.url + '/' + id );
+  }
+  // tslint:disable-next-line:typedef
+  postReservation(reservation) {
+    return this.http.post(this.url, reservation);
+  }
+  // tslint:disable-next-line:typedef
+  updateReservation(reservation, id: number) {
+    return this.http.put(this.url + '/' + id, reservation);
+  }
+  // tslint:disable-next-line:typedef
+  deleteReservation(id: number)
+  {
+    return this.http.delete( this.url + '/' + id);
+  }
+}

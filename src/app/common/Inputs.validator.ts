@@ -8,8 +8,13 @@ export class InputItemsValidator{
   }
 
   static isDateBeforeToday(control: AbstractControl): ValidationErrors | null {
-    if (Date.now() >= new Date((control.value as string)).getTime()) {return null; }
+    if (Date.now() <= new Date((control.value as string)).getTime()) {return null; }
     return {isDateBeforeToday: true};
+  }
+
+  static isDateAfterToday(control: AbstractControl): ValidationErrors | null {
+    if (Date.now() >= new Date((control.value as string)).getTime()) {return null; }
+    return {isDateAfterToday: true};
   }
 }
 

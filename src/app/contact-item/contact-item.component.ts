@@ -10,8 +10,8 @@ export class ContactItemComponent {
   @Output() deleteContact = new EventEmitter<Contact>();
   @Input() contact: Contact;
 
-  onDeleteContact(data: Contact): void {
-    this.deleteContact.emit(data);
+  onDeleteContact(contact: Contact): void {
+    this.deleteContact.emit(contact);
   }
 
 }

@@ -2,8 +2,9 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Contact} from '../common/contact';
 import _ from 'underscore';
 import {FormControl, FormGroup} from '@angular/forms';
-import {HttpClient} from '@angular/common/http';
-const urlPath = 'https://localhost:5001/api/contacts';
+import {ContactService} from '../services/contact.service';
+
+
 
 @Component({
   selector: 'app-contacts-list',
@@ -13,47 +14,32 @@ const urlPath = 'https://localhost:5001/api/contacts';
 
 export class ContactsListComponent implements OnInit{
 
-  constructor(private http: HttpClient){
-    this.http.get(urlPath).subscribe(response => {
-      this.contacts = Object.keys(response).map(key => {
-        const item = response[key];
-        item.birthDate = new Date((response[key].birthDate).substring(0, 10) );
-        return (item as Contact);
-        });
-      this.numberOfItemsPerPage = 5;
-      this.contactsToShow = this.selectItemToShow(this.contacts, 1);
-      console.log(this.contactsToShow);
-    });
-    }
-  public contacts: object[];
-  public contactsToShow: (Contact) [];
-  // @Input()
-  private numberOfItemsPerPage: number ;
-  public numberOfPages: number;
+  constructor(private service: ContactService){}
+
+  public contacts: Contact[];
   form = new FormGroup({sortOrder: new FormControl('', )});
 
-  static sortItemsBy(items: any[], category: string, reverse: boolean = false): any[]{
-     return reverse ? _.sortBy( items, category ).reverse() : _.sortBy( items, category );
+  onDeleteContact(contact): void {
+    this.service.deleteContact(contact.contactId)
+      .subscribe(
+        () => {
+          const index = this.contacts.indexOf(contact);
+          this.contacts.splice(index, 1);
+          console.log(this.contacts);
+        },
+        error => {
+          if (error.status === 404) { alert('This contact has already been deleted'); }
+          else {alert('An unexpected error occurred.'); }
+        });
   }
 
-  onDeleteContact(data): void {
-    console.log(data);
-    const newURL = urlPath + '/' + data.contactId;
-    console.log('Length Before' + this.contacts.length);
-    this.http.delete(newURL).subscribe(() => {
-      const index = this.contacts.indexOf(data);
-      this.contacts.splice(index, 1);
-    });
-    console.log('Length After' + this.contacts.length);
-  }
-  onSubmit(): void{
-    console.log(this.form);
-    const reverse = (this.form.get('sortOrder').value as string).indexOf(' ') >= 0;
-    console.log(reverse);
-  }
-
+  /*
   isReverseSort(): boolean{
     return (this.form.get('sortOrder').value as string).indexOf(' ') >= 0;
+  }
+
+  static sortItemsBy(items: any[], category: string, reverse: boolean = false): any[]{
+    return reverse ? _.sortBy( items, category ).reverse() : _.sortBy( items, category );
   }
 
   selectItemToShow(items: object [], pageNumber: number): any[] {
@@ -64,8 +50,28 @@ export class ContactsListComponent implements OnInit{
       newContacts.push(items[i]);
     }
     return ContactsListComponent.sortItemsBy(newContacts, 'birthDate', this.isReverseSort());
-  }
+  }*/
 
   ngOnInit(): void {
+    this.service.getContacts()
+      .subscribe(
+        response => {
+          console.log(response);
+          this.contacts = Object.keys(response).map(key => {
+            const item = response[key];
+            item.birthDate = new Date((response[key].birthDate).substring(0, 10));
+            return (item as Contact);
+          });
+          console.log(this.contacts);
+      });
   }
+    // LOGIC TO PAGINATE (SEE LATER)
+    // this.numberOfItemsPerPage = 5;
+    // this.contactsToShow = this.selectItemToShow(this.contacts, 1);
+    // console.log(this.contactsToShow);
+    // public contactsToShow: (Contact) [];
+    // @Input()
+    // private numberOfItemsPerPage: number ;
+    // public numberOfPages: number;
+
 }

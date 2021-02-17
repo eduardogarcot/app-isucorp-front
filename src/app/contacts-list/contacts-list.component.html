@@ -1,23 +1,22 @@
 <div class="container">
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <select
-      formControlName="sortOrder"
-      id="sortOrder"
-      class="input-sortOrder"
-  >
+  <form [formGroup]="form">
+    <select
+        formControlName="sortOrder"
+        id="sortOrder"
+        class="input-sortOrder"
+    >
       <option value="name">Sort by Name Ascending</option>
       <option value="name r">Sort by Name Descending</option>
       <option value="birthDate">Sort By Birth Date Ascending</option>
       <option value="birthDate a">Sort By Birth Date Descending</option>
-  </select>
-    <button type="submit">Submit</button>
+    </select>
   </form>
 </div>
   <div class="container">
-    <div *ngFor="let contact of contactsToShow">
+    <div *ngFor="let contact of contacts">
       <app-contact-item [contact]="contact" (deleteContact)="onDeleteContact($event)"></app-contact-item>
     </div>
   <div class="pagination-item">
-    <p>Pagination Component</p>
+    <p>There must to be rendered the Pagination Component</p>
   </div>
 </div>

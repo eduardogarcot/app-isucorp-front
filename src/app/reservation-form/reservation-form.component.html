@@ -38,7 +38,9 @@
     <h4 *ngIf="form.get('phoneNumber').errors?.minlength">Number Phone requires at least {{form.get('phoneNumber').errors.minlength.requiredLength}} numbers</h4>
     <h4 *ngIf="form.get('phoneNumber').errors?.maxlength">Number Phone requires no more than {{form.get('phoneNumber').errors.maxlength.requiredLength}} numbers</h4>
     <h4 *ngIf="form.get('reservationDate').errors?.required && form.get('reservationDate').touched"> Reservation Date is required</h4>
-<!--    <h4 *ngIf="form.get('reservationDate').errors?.isDateBeforeToday && form.get('reservationDate').touched"> Reservation Date invalid. The reservation date cannot be earlier than this time</h4>-->
+    <h4 *ngIf="form.get('reservationDate').errors?.isDateAfterToday && form.get('reservationDate').touched">
+      Reservation Date invalid. The reservation date cannot be earlier than actual time
+    </h4>
  </div>
   <div class="container button">
     <button class="btn" type="submit" [disabled]="!form.valid">Submit</button>

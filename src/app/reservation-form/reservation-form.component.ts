@@ -18,7 +18,7 @@ export class ReservationFormComponent {
     name: new FormControl('', [Validators.required]),
     phoneNumber: new FormControl('', [Validators.required, InputItemsValidator.isAPhoneNumber,
                                                             Validators.minLength(7), Validators.maxLength(12)]),
-    reservationDate: new FormControl(null, [Validators.required])
+    reservationDate: new FormControl(null, [Validators.required, InputItemsValidator.isDateAfterToday])
   });
 
   onSubmit(): void {

@@ -3,7 +3,7 @@ import {Reservation} from '../common/reservation';
 import {FormControl, FormGroup} from '@angular/forms';
 import {ReservationService} from '../services/reservation.service';
 import {ContactService} from '../services/contact.service';
-import {HttpClient} from '@angular/common/http';
+
 
 @Component({
   selector: 'app-reservation-list',
@@ -40,15 +40,15 @@ export class ReservationListComponent implements OnInit {
               this.serviceC.getContact(item.contactId)
                 .subscribe(
                   response2 => {
-                      const reservation = {
+                    const reservation = {
                         contactName: response2['name'], reservationId: item.reservationId,
-                        reservationDate : new Date((item.reservationDate as string).substring(0, 10)),
+                        reservationDate : new Date(item.reservationDate),
                         isFavorite: item.isFavorite, rate: item.rate, contactId: item.contactId};
-                      newReservations.push(reservation as Reservation);
-                      value--;
-                      if (value === 0) {
-                        this.reservations = newReservations;
-                      }
+                    newReservations.push(reservation as Reservation);
+                    value--;
+                    if (value === 0) {
+                      this.reservations = newReservations;
+                    }
                   },
                   () => {
                     alert('An unexpected error occurred');
@@ -60,6 +60,7 @@ export class ReservationListComponent implements OnInit {
           alert('An Unexpected error occurred');
         });
     }
+
 
     //  LOGIC FOR PAGINATION
     // @Input()

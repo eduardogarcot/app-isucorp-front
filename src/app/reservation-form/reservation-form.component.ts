@@ -18,10 +18,12 @@ export class ReservationFormComponent {
     name: new FormControl('', [Validators.required]),
     phoneNumber: new FormControl('', [Validators.required, InputItemsValidator.isAPhoneNumber,
                                                             Validators.minLength(7), Validators.maxLength(12)]),
-    reservationDate: new FormControl('', [Validators.required])
+    reservationDate: new FormControl(null, [Validators.required])
   });
 
   onSubmit(): void {
+    // tslint:disable-next-line:max-line-length
+    console.log('Type of Date : ' + typeof this.form.get('reservationDate').value + '  Value of Date : ' + this.form.get('reservationDate').value);
     this.service.getContacts()
       .subscribe(
         response => {
@@ -38,7 +40,8 @@ export class ReservationFormComponent {
           if (idContact > 0) {
             const reservation = {
               contactId: idContact,
-              reservationDate: new Date((this.form.get('reservationDate').value as string))};
+              reservationDate: this.form.get('reservationDate').value
+            };
             this.serviceR.postReservation(reservation)
               .subscribe(
                 response1 => {

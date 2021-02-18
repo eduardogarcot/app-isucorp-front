@@ -3,9 +3,9 @@
     <p class="rName">{{reservation.contactName}}</p>
     <p class="rDate">{{reservation.reservationDate | date: 'EEE MMM d, y, h:mm a'}}</p>
   </div>
-  <p class="contact-property" *ngIf="reservation.isFavorite"><strong>Favorite)</strong></p>
-  <p class="contact-property" *ngIf="!reservation.isFavorite">Not favorite</p>
-  <p class="contact-property">{{reservation.rate}}</p>
+  <p class="contact-property" (click)="onFavoriteReservation(reservation)" *ngIf="reservation.isFavorite"><strong>Favorite)</strong></p>
+  <p class="contact-property" (click)="onFavoriteReservation(reservation)" *ngIf="!reservation.isFavorite">Not favorite</p>
+  <p class="contact-property" (click)="onRateReservation(reservation)">{{reservation.rate}}</p>
   <div class="button editBtn" >Edit</div>
   <div class="button deleteBtn" (click)="onDeleteReservation(reservation)">Delete</div>
 </div>

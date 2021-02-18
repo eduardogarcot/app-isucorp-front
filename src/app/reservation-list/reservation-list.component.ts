@@ -26,6 +26,29 @@ export class ReservationListComponent implements OnInit {
         this.reservations.splice(index, 1);
       });
   }
+  onFavoriteReservation(reservation): void{
+    reservation.isFavorite = !reservation.isFavorite;
+    reservation.reservationDate.setHours((reservation.reservationDate.getHours() - 5) % 24);
+    this.service.updateReservation(reservation, reservation.reservationId)
+      .subscribe(
+        () => {},
+        () => {
+          reservation.isFavorite = !reservation.isFavorite;
+          alert('An unexpected error occurred');
+        });
+  }
+
+  onRateReservation(reservation): void{
+    const oldRate = reservation.rate;
+    reservation.rate = (oldRate + 1) % 5;
+    this.service.updateReservation(reservation, reservation.reservationId)
+      .subscribe(
+        () => {},
+        () => {
+          reservation.rate = oldRate;
+          alert('An unexpected error occurred');
+        });
+  }
 
   // tslint:disable-next-line:max-line-length
   ngOnInit(): void {

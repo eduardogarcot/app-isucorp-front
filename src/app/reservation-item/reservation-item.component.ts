@@ -9,9 +9,19 @@ import {Reservation} from '../common/reservation';
 })
 export class ReservationItemComponent{
   @Output() deleteReservation = new EventEmitter<Reservation>();
+  @Output() rateReservation = new EventEmitter<Reservation>();
+  @Output() favoriteReservation = new EventEmitter<Reservation>();
   @Input () reservation: Reservation;
 
   onDeleteReservation(data: Reservation): void{
     this.deleteReservation.emit(data);
+  }
+
+  onFavoriteReservation(data: Reservation): void{
+    this.favoriteReservation.emit(data);
+  }
+
+  onRateReservation(data: Reservation): void{
+    this.rateReservation.emit(data);
   }
 }

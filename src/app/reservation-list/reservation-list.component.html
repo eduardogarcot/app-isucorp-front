@@ -14,7 +14,12 @@
 </div>
 <div class="container">
   <div *ngFor="let reservation of reservations">
-    <app-reservation-item [reservation]="reservation" (deleteReservation)="onDeleteReservation($event)"></app-reservation-item>
+    <app-reservation-item
+      [reservation]="reservation"
+      (deleteReservation)="onDeleteReservation($event)"
+      (favoriteReservation)="onFavoriteReservation($event)"
+      (rateReservation)="onRateReservation($event)"
+    ></app-reservation-item>
   </div>
   <div class="pagination-item">
     <p>Pagination Components</p>

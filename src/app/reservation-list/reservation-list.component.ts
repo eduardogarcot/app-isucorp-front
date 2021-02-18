@@ -12,7 +12,7 @@ import {HttpClient} from '@angular/common/http';
 })
 export class ReservationListComponent implements OnInit {
 
-  constructor(private service: ReservationService, private htpp: HttpClient, private serviceC: ContactService) {
+  constructor(private service: ReservationService, private serviceC: ContactService) {
   }
 
   public reservations: Reservation[];
@@ -37,7 +37,7 @@ export class ReservationListComponent implements OnInit {
           Object.keys(response).map(
             key => {
               const item = response[key];
-              this.htpp.get('https://localhost:5001/api/contacts/' + item.contactId)
+              this.serviceC.getContact(item.contactId)
                 .subscribe(
                   response2 => {
                       const reservation = {

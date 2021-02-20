@@ -51,15 +51,26 @@ export class ReservationFormComponent implements OnInit {
               if (this.parameter === 0) {
                 this.serviceR.postReservation(reservation)
                   .subscribe(
-                    response1 => {
-                      console.log('ITEM AGREGADO');
-                    }
-                  );
+                    () => {
+                      this.router.navigateByUrl('/');
+                    },
+                    error1 => {
+                      if (error1.status === 400 ){
+                        alert('An error has occurred, please check the contact name and the phone number'); }
+                      else { alert('An unexpected error occurred.'); }
+                    });
               }
               else {
                 this.serviceR.updateReservation(reservation, this.parameter)
                   .subscribe(
-                    () => {console.log('ITEM EDITADO'); });
+                    () => {
+                      this.router.navigateByUrl('/');
+                    },
+                    error1 => {
+                      if (error1.status === 400 ) {
+                        alert('An error occurred, please check the contact name and the phone number'); }
+                      else { alert('An unexpected error occurred.'); }
+                    });
               }
             } else {
               // tslint:disable-next-line:max-line-length

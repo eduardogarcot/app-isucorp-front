@@ -5,6 +5,6 @@
   </div>
   <p class="contact-property">{{contact.phoneNumber}}</p>
   <p class="contact-property">{{contact.birthDate.toDateString()}}</p>
-  <div class="button editBtn">Edit</div>
+  <div class="button editBtn" [routerLink]="['/contact-form',contact.contactId]" >Edit</div>
   <div class="button deleteBtn" (click)="onDeleteContact(contact)">Delete</div>
 </div>

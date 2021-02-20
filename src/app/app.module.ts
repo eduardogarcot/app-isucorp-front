@@ -39,7 +39,7 @@ import {ReservationService} from './services/reservation.service';
       [
         { path: 'contacts-list', component: ContactsListComponent},
         { path: '', component: ReservationListComponent},
-        { path: 'contact-form', component: ContactFormComponent},
+        { path: 'contact-form/:contactId', component: ContactFormComponent},
         { path: 'reservation-form', component: ReservationFormComponent}
       ]
     )

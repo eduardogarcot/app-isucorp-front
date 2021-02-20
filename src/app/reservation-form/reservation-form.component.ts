@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {InputItemsValidator} from '../common/Inputs.validator';
 import {ContactService} from '../services/contact.service';
 import {ReservationService} from '../services/reservation.service';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-reservation-form',
@@ -10,10 +11,18 @@ import {ReservationService} from '../services/reservation.service';
   styleUrls: ['./reservation-form.component.css']
 })
 
-export class ReservationFormComponent {
+export class ReservationFormComponent implements OnInit {
 
-  constructor(private service: ContactService, private serviceR: ReservationService) { }
+  constructor(
+    private service: ContactService,
+    private serviceR: ReservationService,
+    private route: ActivatedRoute,
+    private  router: Router
+  ) {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+  }
 
+  private parameter: number;
   form = new FormGroup( {
     name: new FormControl('', [Validators.required]),
     phoneNumber: new FormControl('', [Validators.required, InputItemsValidator.isAPhoneNumber,
@@ -22,37 +31,70 @@ export class ReservationFormComponent {
   });
 
   onSubmit(): void {
-    // tslint:disable-next-line:max-line-length
-    console.log('Type of Date : ' + typeof this.form.get('reservationDate').value + '  Value of Date : ' + this.form.get('reservationDate').value);
-    this.service.getContacts()
+      this.service.getContacts()
+        .subscribe(
+          response => {
+            let idContact = -1;
+            Object.keys(response).some(
+              (key) => {
+                const item = response[key];
+                if (item.name === this.form.get('name').value && item.phoneNumber === Number(this.form.get('phoneNumber').value)) {
+                  idContact = item.contactId;
+                  return true;
+                }
+              });
+            if (idContact > 0) {
+              const reservation = {
+                contactId: idContact,
+                reservationDate: this.form.get('reservationDate').value
+              };
+              if (this.parameter === 0) {
+                this.serviceR.postReservation(reservation)
+                  .subscribe(
+                    response1 => {
+                      console.log('ITEM AGREGADO');
+                    }
+                  );
+              }
+              else {
+                this.serviceR.updateReservation(reservation, this.parameter)
+                  .subscribe(
+                    () => {console.log('ITEM EDITADO'); });
+              }
+            } else {
+              // tslint:disable-next-line:max-line-length
+              alert('This pair Contact Name and Contact Number doesn\'t exist in the system. Please add the current Contact and try again.');
+            }
+          }
+        );
+  }
+
+  ngOnInit(): void {
+    this.parameter = this.route.snapshot.paramMap.get('reservationId') === 'new' ? 0 : Number(this.route.snapshot.paramMap.get('reservationId'));
+    if (this.parameter === 0) {return ; }
+    this.serviceR.getReservation(this.parameter)
       .subscribe(
         response => {
-          let idContact = -1;
-          Object.keys(response).some(
-            (key) => {
-              const item = response[key];
-              if (item.name === this.form.get('name').value && item.phoneNumber === Number(this.form.get('phoneNumber').value))
-              {
-                idContact = item.contactId;
-                return true;
-              }
-            });
-          if (idContact > 0) {
-            const reservation = {
-              contactId: idContact,
-              reservationDate: this.form.get('reservationDate').value
-            };
-            this.serviceR.postReservation(reservation)
-              .subscribe(
-                response1 => {
-                  console.log(response1);
-                }
-              );
-          }
-          else {alert('This pair Contact Name and Contact Number doesn\'t exist in the system. Please add the current Contact and try again.'); }
+          this.service.getContact(response['contactId'])
+            .subscribe(
+              response2 => {
+                this.form.setValue(
+                  {
+                    name : response2['name'],
+                    phoneNumber : response2['phoneNumber'],
+                    reservationDate : response['reservationDate'].substring(0, 10)
+                  });
+              },
+              () => {
+                alert('An unexpected error occurred.'); }
+            );
+          },
+        error1 => {
+          if (error1.status === 404) { alert('This reservation doesn\'t exist in the System.'); }
+          else {alert('An unexpected error occurred.'); }
+          this.router.navigateByUrl('/');
         }
       );
   }
-
 }
 

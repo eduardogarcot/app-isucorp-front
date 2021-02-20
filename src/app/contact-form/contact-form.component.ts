@@ -3,9 +3,8 @@ import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {InputItemsValidator} from '../common/Inputs.validator';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {ContactService} from '../services/contact.service';
-import {CKEditor5} from '@ckeditor/ckeditor5-angular';
-import {Router, ActivatedRoute, ParamMap } from '@angular/router';
-import Editor = CKEditor5.Editor;
+import {Router, ActivatedRoute} from '@angular/router';
+
 
 
 @Component({
@@ -19,7 +18,9 @@ export class ContactFormComponent implements OnInit {
     private service: ContactService,
     private route: ActivatedRoute,
     private  router: Router
-  ) {}
+  ) {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+  }
 
   private parameter: number;
   public Editor = ClassicEditor;

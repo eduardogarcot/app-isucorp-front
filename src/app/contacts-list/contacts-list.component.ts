@@ -3,7 +3,7 @@ import {Contact} from '../common/contact';
 import _ from 'underscore';
 import {FormControl, FormGroup} from '@angular/forms';
 import {ContactService} from '../services/contact.service';
-
+import {ArrayManipulations} from '../common/listsManipulations';
 
 
 @Component({
@@ -62,6 +62,7 @@ export class ContactsListComponent implements OnInit{
             item.birthDate = new Date((response[key].birthDate).substring(0, 10));
             return (item as Contact);
           });
+          this.contacts = ArrayManipulations.sortItemsBy(this.contacts, 'birthDate');
           console.log(this.contacts);
       });
   }

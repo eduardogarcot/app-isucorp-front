@@ -18,6 +18,8 @@ Reservations Management System UI desgned for ISUCorp.
     2. ng serve
 4. Open the browser, and type in the URL bar the following address:
     https://localhost:4200
+    
+NOTE: The other application (app-isucorp) should be running. In another way an unexpected error will be obtained. 
 
 
 

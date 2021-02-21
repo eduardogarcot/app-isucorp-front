@@ -16,7 +16,7 @@ Reservations Management System UI desgned for ISUCorp.
 3. Open CMD and run the following commands: 
     1. npm install
     2. ng serve
-4. Open the browser, and type in the YRL bar the following address:
+4. Open the browser, and type in the URL bar the following address:
     https://localhost:4200
 
 

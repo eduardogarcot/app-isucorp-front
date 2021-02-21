@@ -1,6 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Contact} from '../common/contact';
-import _ from 'underscore';
 import {FormControl, FormGroup} from '@angular/forms';
 import {ContactService} from '../services/contact.service';
 import {ArrayManipulations} from '../common/listsManipulations';
@@ -17,7 +16,15 @@ export class ContactsListComponent implements OnInit{
   constructor(private service: ContactService){}
 
   public contacts: Contact[];
-  form = new FormGroup({sortOrder: new FormControl('', )});
+  public contactsToPage: Contact[];
+  public form: FormGroup;
+  public pageOfItems: Array<any>;
+  public SortCategory = [
+    {value: 'name',   label: 'By Name Ascending'},
+    {value: 'name r', label: 'By Name Descending'},
+    {value: 'birthDate',   label: 'By Date Ascending'},
+    {value: 'birthDate r', label: 'By Date Descending'}
+    ];
 
   onDeleteContact(contact): void {
     this.service.deleteContact(contact.contactId)
@@ -33,24 +40,9 @@ export class ContactsListComponent implements OnInit{
         });
   }
 
-  /*
-  isReverseSort(): boolean{
-    return (this.form.get('sortOrder').value as string).indexOf(' ') >= 0;
+  onChangePage(pageOfItems: Array<any>): void{
+    this.contactsToPage = [];
   }
-
-  static sortItemsBy(items: any[], category: string, reverse: boolean = false): any[]{
-    return reverse ? _.sortBy( items, category ).reverse() : _.sortBy( items, category );
-  }
-
-  selectItemToShow(items: object [], pageNumber: number): any[] {
-    const newContacts: (any)[] = [];
-    for (let i = (pageNumber - 1) * this.numberOfItemsPerPage ; i < this.numberOfItemsPerPage ; i++)
-    {
-      if (i === items.length) { break; }
-      newContacts.push(items[i]);
-    }
-    return ContactsListComponent.sortItemsBy(newContacts, 'birthDate', this.isReverseSort());
-  }*/
 
   ngOnInit(): void {
     this.service.getContacts()
@@ -62,9 +54,13 @@ export class ContactsListComponent implements OnInit{
             item.birthDate = new Date((response[key].birthDate).substring(0, 10));
             return (item as Contact);
           });
-          this.contacts = ArrayManipulations.sortItemsBy(this.contacts, 'birthDate');
-          console.log(this.contacts);
+          // this.contacts = ArrayManipulations.sortItemsBy(this.contacts, 'birthDate');
+          console.log(ArrayManipulations.selectItemsFromPage(this.contacts, 3, 2));
       });
+    this.form = new FormGroup({sortOrder: new FormControl()});
+    this.form.controls['sortOrder'].valueChanges.subscribe(val => {
+      this.contacts = ArrayManipulations.sortItemsBy(this.contacts, val);
+    });
   }
     // LOGIC TO PAGINATE (SEE LATER)
     // this.numberOfItemsPerPage = 5;
@@ -74,5 +70,15 @@ export class ContactsListComponent implements OnInit{
     // @Input()
     // private numberOfItemsPerPage: number ;
     // public numberOfPages: number;
+  /*
+selectItemToShow(items: object [], pageNumber: number): any[] {
+  const newContacts: (any)[] = [];
+  for (let i = (pageNumber - 1) * this.numberOfItemsPerPage ; i < this.numberOfItemsPerPage ; i++)
+  {
+    if (i === items.length) { break; }
+    newContacts.push(items[i]);
+  }
+  return ContactsListComponent.sortItemsBy(newContacts, 'birthDate', this.isReverseSort());
+}*/
 
 }

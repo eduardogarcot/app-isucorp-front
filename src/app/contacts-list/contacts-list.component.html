@@ -5,10 +5,7 @@
         id="sortOrder"
         class="input-sortOrder"
     >
-      <option value="name">Sort by Name Ascending</option>
-      <option value="name r">Sort by Name Descending</option>
-      <option value="birthDate">Sort By Birth Date Ascending</option>
-      <option value="birthDate a">Sort By Birth Date Descending</option>
+      <option *ngFor="let category of SortCategory" [ngValue]="category.value">{{category.label}}</option>
     </select>
   </form>
 </div>

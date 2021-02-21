@@ -16,7 +16,6 @@ export class PaginatorComponent implements OnInit {
   public pagesList: any[];
 
   onPaginateTo(nextPage: number): void {
-    console.log('hello');
     this.paginateTo.emit(nextPage);
   }
 

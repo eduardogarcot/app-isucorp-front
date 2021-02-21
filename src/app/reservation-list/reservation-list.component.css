@@ -6,6 +6,13 @@
   background-color:white;
 }
 
+.input-sortOrder{
+  display: flex;
+  padding: 1%;
+  margin: 1%;
+  font-size: medium;
+}
+
 @media screen and (max-width: 768px){
   .container{
     width: 100%;

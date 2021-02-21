@@ -2,6 +2,8 @@
   display: flex;
   flex-direction: row;
   margin: 0.5%;
+  padding: 0.5%;
+  font-size: medium;
 }
 
 .container{

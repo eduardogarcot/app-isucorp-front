@@ -16,6 +16,7 @@ import { ReservationFormComponent } from './reservation-form/reservation-form.co
 import {RouterModule} from '@angular/router';
 import {ContactService} from './services/contact.service';
 import {ReservationService} from './services/reservation.service';
+import { PaginatorComponent } from './paginator/paginator.component';
 
 // @ts-ignore
 @NgModule({
@@ -27,7 +28,8 @@ import {ReservationService} from './services/reservation.service';
     ContactsListComponent,
     ReservationListComponent,
     ContactFormComponent,
-    ReservationFormComponent
+    ReservationFormComponent,
+    PaginatorComponent
   ],
   imports: [
     BrowserModule,

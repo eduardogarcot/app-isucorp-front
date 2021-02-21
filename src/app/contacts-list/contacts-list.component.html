@@ -10,10 +10,15 @@
   </form>
 </div>
   <div class="container">
-    <div *ngFor="let contact of contacts">
+    <div *ngFor="let contact of contactsToPage">
       <app-contact-item [contact]="contact" (deleteContact)="onDeleteContact($event)"></app-contact-item>
     </div>
   <div class="pagination-item">
-    <p>There must to be rendered the Pagination Component</p>
+    <app-paginator
+      [numberOfItems]="contacts.length"
+      [numberOfItemsPerPage]="numberOfItemsInAPage"
+      [activePage]="currentPage"
+      (paginateTo)="onPaginateTo($event)"
+    ></app-paginator>
   </div>
 </div>

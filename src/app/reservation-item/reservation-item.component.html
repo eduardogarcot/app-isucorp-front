@@ -1,16 +1,18 @@
-<div class="reservation-item">
+<div class="reservation-item-container">
   <div class="reservation-NameDate">
     <p class="rName">{{reservation.contactName}}</p>
     <p class="rDate">{{reservation.reservationDate | date: 'EEE MMM d, y, h:mm a'}}</p>
   </div>
-  <div class="contact-property" (click)="onFavoriteReservation(reservation)" *ngIf="reservation.isFavorite">
-<!--    <strong>Fav</strong>-->
-    <img src="../../assets/img/favorite-24px.svg">
+  <div class="reservation-favorite">
+    <img *ngIf="reservation.isFavorite" (click)="onFavoriteReservation(reservation)" src="../../assets/img/favorite-24px.svg">
+    <img *ngIf="!reservation.isFavorite" (click)="onFavoriteReservation(reservation)" src="../../assets/img/favorite_border-24px.svg">
   </div>
-  <div class="contact-property" (click)="onFavoriteReservation(reservation)" *ngIf="!reservation.isFavorite">
-    <img src="../../assets/img/favorite_border-24px.svg">
+  <div class="reservation-rate">
+    <p (click)="onRateReservation(reservation)">{{reservation.rate}}</p>
   </div>
-  <p class="contact-property" (click)="onRateReservation(reservation)">{{reservation.rate}}</p>
+<div class="reservation-buttons">
   <div class="button editBtn" [routerLink]="['/reservation-form', reservation.reservationId]" >Edit</div>
   <div class="button deleteBtn" (click)="onDeleteReservation(reservation)">Delete</div>
+</div>
+
 </div>

@@ -26,7 +26,6 @@ export class PaginatorComponent implements OnInit {
   ngOnInit(): void {
     this.numberOfPages = Math.ceil(this.numberOfItems / this.numberOfItemsPerPage);
     this.pagesList = [ ...Array(this.numberOfPages).keys() ].map( i => i + 1);
-    console.log(this.pagesList);
   }
 
 }

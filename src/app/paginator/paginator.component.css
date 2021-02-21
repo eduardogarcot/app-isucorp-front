@@ -1,0 +1,12 @@
+.paginate-btn{
+  display: flex;
+  flex-direction: row;
+  margin: 0.5%;
+}
+
+.container{
+  margin: 1%;
+  display: flex;
+  justify-content: center;
+  align-content: space-between;
+}

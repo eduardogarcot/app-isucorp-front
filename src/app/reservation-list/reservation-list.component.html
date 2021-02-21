@@ -5,15 +5,12 @@
       id="sortOrder"
       class="input-sortOrder"
     >
-      <option value="name">Sort by Name Ascending</option>
-      <option value="name r">Sort by Name Descending</option>
-      <option value="birthDate">Sort By Birth Date Ascending</option>
-      <option value="birthDate a">Sort By Birth Date Descending</option>
+      <option *ngFor="let category of SortCategory" [ngValue]="category.value">{{category.label}}</option>
     </select>
   </form>
 </div>
 <div class="container">
-  <div *ngFor="let reservation of reservations">
+  <div *ngFor="let reservation of reservationsToPage">
     <app-reservation-item
       [reservation]="reservation"
       (deleteReservation)="onDeleteReservation($event)"
@@ -22,6 +19,11 @@
     ></app-reservation-item>
   </div>
   <div class="pagination-item">
-    <p>Pagination Components</p>
+    <app-paginator
+      [numberOfItems]="reservations.length"
+      [numberOfItemsPerPage]="numberOfItemsInAPage"
+      [activePage]="currentPage"
+      (paginateTo)="onPaginateTo($event)"
+    ></app-paginator>
   </div>
 </div>

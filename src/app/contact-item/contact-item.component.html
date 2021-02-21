@@ -1,10 +1,12 @@
 <div class="contactItem">
   <div class="contact-tName">
     <p class="cName">{{contact.name}}</p>
-    <p class="cType">{{contact.contactType}}</p>
+    <p class="cType">{{contactType[contact.contactType]}}</p>
   </div>
-  <p class="contact-property">{{contact.phoneNumber}}</p>
-  <p class="contact-property">{{contact.birthDate.toDateString()}}</p>
-  <div class="button editBtn" [routerLink]="['/contact-form',contact.contactId]" >Edit</div>
-  <div class="button deleteBtn" (click)="onDeleteContact(contact)">Delete</div>
+  <p class="contact">{{contact.phoneNumber}}</p>
+  <p class="contact">{{contact.birthDate.toDateString()}}</p>
+  <div class="contact-buttons">
+    <div class="button editBtn" [routerLink]="['/contact-form',contact.contactId]" >Edit</div>
+    <div class="button deleteBtn" (click)="onDeleteContact(contact)">Delete</div>
+  </div>
 </div>

@@ -12,11 +12,7 @@ import {ArrayManipulations} from '../common/listsManipulations';
 })
 
 export class ContactsListComponent implements OnInit{
-
-  constructor(private service: ContactService){
-    this.numberOfItemsInAPage = 2;
-    this.currentPage = 1;
-  }
+  constructor(private service: ContactService){}
 
   public contacts: Contact[];
   public contactsToPage: Contact[];
@@ -36,34 +32,38 @@ export class ContactsListComponent implements OnInit{
         () => {
           const index = this.contacts.indexOf(contact);
           this.contacts.splice(index, 1);
-          console.log(this.contacts);
-        },
+          this.Paginate();
+          },
         error => {
           if (error.status === 404) { alert('This contact has already been deleted'); }
-          else {alert('An unexpected error occurred.'); }
-        });
+          else {alert('An unexpected error occurred.'); } });
   }
 
   onPaginateTo(nextPage: number): void{
     this.currentPage = nextPage;
     this.contactsToPage = ArrayManipulations.selectItemsFromPage(this.contacts, this.numberOfItemsInAPage, nextPage);
   }
-
+  MappingResponseToAContactsList(response): void{
+    this.contacts = Object.keys(response).map(key => response[key] as Contact);
+  }
+  Paginate(): void{
+    this.contactsToPage = ArrayManipulations.selectItemsFromPage(this.contacts, this.numberOfItemsInAPage, this.currentPage);
+  }
   ngOnInit(): void {
+    this.numberOfItemsInAPage = 2;
+    this.currentPage = 1;
     this.service.getContacts()
       .subscribe(
         response => {
-          this.contacts = Object.keys(response).map(key => {
-            const item = response[key];
-            item.birthDate = new Date((response[key].birthDate).substring(0, 10));
-            return (item as Contact);
-          });
-          this.contactsToPage = ArrayManipulations.selectItemsFromPage(this.contacts, this.numberOfItemsInAPage, this.currentPage);
+          this.MappingResponseToAContactsList(response);
+          this.Paginate();
       });
     this.form = new FormGroup({sortOrder: new FormControl()});
+    // Subscription to a value change of the ComboBox for sorting Order.
+    // In case of change, the algorithm to pagination include the corresponding sorting
     this.form.controls['sortOrder'].valueChanges.subscribe(val => {
       this.contacts = ArrayManipulations.sortItemsBy(this.contacts, val);
-      this.contactsToPage = ArrayManipulations.selectItemsFromPage(this.contacts, this.numberOfItemsInAPage, this.currentPage);
+      this.Paginate();
     });
   }
 }

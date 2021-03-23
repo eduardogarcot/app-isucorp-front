@@ -6,6 +6,7 @@ import {Contact} from '../common/contact';
   templateUrl: './contact-item.component.html',
   styleUrls: ['./contact-item.component.css']
 })
+
 export class ContactItemComponent {
   @Output() deleteContact = new EventEmitter<Contact>();
   @Input() contact: Contact;

@@ -15,11 +15,12 @@
 
 @media screen and (max-width: 768px){
   .container{
-    width: 100%;
-    margin-top: 2%;
+    width: 98%;
     margin-left: 0;
     padding: 1%;
-    background-color:white;
+  }
+  .input-sortOrder{
+    font-size: x-small;
   }
 }
 

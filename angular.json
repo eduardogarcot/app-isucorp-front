@@ -92,10 +92,10 @@
               "browserTarget": "app-isucorp-front:build:production"
             },
             "fr": {
-              "browserTarget": "angular-internationalization-example:build:fr"
+              "browserTarget": "app-isucorp-front:build:fr"
             },
             "es": {
-              "browserTarget": "angular-internationalization-example:build:es"
+              "browserTarget": "app-isucorp-front:build:es"
             }
           }
         },

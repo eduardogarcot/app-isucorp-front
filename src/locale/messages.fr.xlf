@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="constructionName" datatype="html">
+        <source>Reservation System</source>
+        <target>Système de réservation</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/nav-bar/nav-bar.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <note priority="1" from="description">Title for banner application</note>
+        <note priority="1" from="meaning">Application Name</note>
+      </trans-unit>
+      <trans-unit id="reservationFormButton" datatype="html">
+        <source>Create a Reservation</source>
+        <target>Créer une réservation</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/nav-bar/nav-bar.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+        <note priority="1" from="description">Button for accessing to Create Reservation form</note>
+        <note priority="1" from="meaning">Create Reservation Button</note>
+      </trans-unit>
+      <trans-unit id="contactFormButton" datatype="html">
+        <source>Create a Contact</source>
+        <target>Créer un contact</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/nav-bar/nav-bar.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+        <note priority="1" from="description">Button for accessing to Create Contact form</note>
+        <note priority="1" from="meaning">Create Contact Button</note>
+      </trans-unit>
+      <trans-unit id="reservationListButton" datatype="html">
+        <source>Reservations List</source>
+        <target>Liste des réservations</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/nav-bar/nav-bar.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+        <note priority="1" from="description">|Button for accessing to Reservation List</note>
+        <note priority="1" from="meaning">Show Reservations Button</note>
+      </trans-unit>
+      <trans-unit id="contactListButton" datatype="html">
+        <source>Contacts List </source>
+        <target>Liste des contacts</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/nav-bar/nav-bar.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+        <note priority="1" from="description">Button for accessing to Contact List</note>
+        <note priority="1" from="meaning">Show Contacts Button</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

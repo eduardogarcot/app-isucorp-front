@@ -68,26 +68,46 @@ img{ display: flex; }
     width: 100%;
     margin-left: 0;
   }
+  .alert-danger{
+    width: 98%;
+    margin-left: 1%;
+  }
+  .textEditor{
+    width: 80%;
+    margin-top: 1%;
+    margin-left: 10%;
+  }
+  .inputForm{
+    width: 31%;
+  }
+  img{ width: 25%; height: 55px }
+  .input{ width: 75%}
 }
 
-@media screen and (max-width : 600px){
+@media screen and (max-width : 720px){
   .container{
-    margin-left: 0;
-    display: flex;
     flex-direction:column;
     justify-content: center;
     align-items: center;
   }
-
   .inputForm{
     width: 98%;
     margin: 1%;
     display: flex;
   }
-
+  img{ width: 12%; height: 55px }
+  .input{ width: 75%}
   input{
     padding-left: 2%;
     display: flex;
     flex-grow: 1;
+  }
+  .alert-danger{
+    font-size: x-small;
+  }
+  .textEditor{
+    width: 98%;
+    margin-top: 1%;
+    margin-left: 1%;
   }
 }

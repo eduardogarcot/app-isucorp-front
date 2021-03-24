@@ -4,10 +4,10 @@
     <p class="rDate">{{reservation.reservationDate | date: 'EEE MMM d, y, h:mm a'}}</p>
   </div>
   <div class="reservation-rate">
-    <p style="margin-right:10%" (click)="onRateReservation(reservation)">{{reservation.rate}}</p>
+    <p class="rate"(click)="onRateReservation(reservation)">{{reservation.rate}}</p>
   </div>
   <div class="reservation-favorite">
-    <p>Add to Fav+</p>
+    <p class="favorite-label">Add to Fav+</p>
     <img *ngIf="reservation.isFavorite" (click)="onFavoriteReservation(reservation)" src="../../assets/img/favorite-24px.svg">
     <img *ngIf="!reservation.isFavorite" (click)="onFavoriteReservation(reservation)" src="../../assets/img/favorite_border-24px.svg">
   </div>

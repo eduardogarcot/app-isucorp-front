@@ -15,7 +15,9 @@ Reservations Management System UI desgned for ISUCorp.
 2. Go to the folder `app-isucorp-front`
 3. Open CMD and run the following commands: 
     1. npm install
-    2. ng serve
+    2. The application implement Internacionalization, then you can choose between 3 configurations languages (english(default), french, spanish). Run the following command:
+    `npm run start:fr` for run the french version,   `npm run start:es` for the spanish version, or `npm run start` for the default (english) version  
+    
 4. Open the browser, and type in the URL bar the following address:
     https://localhost:4200
     

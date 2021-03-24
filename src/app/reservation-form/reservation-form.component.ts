@@ -4,6 +4,8 @@ import {InputItemsValidator} from '../common/Inputs.validator';
 import {ContactService} from '../services/contact.service';
 import {ReservationService} from '../services/reservation.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import {ChangeEvent} from '@ckeditor/ckeditor5-angular';
 
 @Component({
   selector: 'app-reservation-form',
@@ -20,6 +22,9 @@ export class ReservationFormComponent implements OnInit {
   ) { }
 
   private parameter: number;
+  public Editor = ClassicEditor;
+  public model = {
+    editorData: '' };
   form = new FormGroup( {
     name: new FormControl('', [Validators.required]),
     phoneNumber: new FormControl('', [Validators.required, InputItemsValidator.isAPhoneNumber,
@@ -27,6 +32,9 @@ export class ReservationFormComponent implements OnInit {
     reservationDate: new FormControl(null, [Validators.required, InputItemsValidator.isDateAfterToday])
   });
 
+  public onChange( { editor }: ChangeEvent ): void{
+    this.model.editorData = editor.getData();
+  }
   onSubmit(): void {
     // Get All Contacts and verify if the pair Name and PhoneNumber exist in the database, and if it is a valid pair,
     //  get the corresponding contactId. Once it be available contactId, build the Reservation Object and make the POST request.
@@ -93,11 +101,13 @@ export class ReservationFormComponent implements OnInit {
         phoneNumber : contact['phoneNumber'],
         reservationDate : reservation['reservationDate']
       });
+    this.model.editorData = reservation.description;
   }
   MappingFormsToRequestReservation(ContactId: number): any{
     return {
       contactId: ContactId,
-      reservationDate: this.form.get('reservationDate').value
+      reservationDate: this.form.get('reservationDate').value,
+      description: this.model.editorData
     };
   }
   GetContactIdByPairNameAndPhone(Contacts): number{

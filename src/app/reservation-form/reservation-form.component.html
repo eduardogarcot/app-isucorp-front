@@ -46,3 +46,12 @@
     <button class="btn" type="submit" [disabled]="!form.valid">Submit</button>
   </div>
 </form>
+<ckeditor
+  [(ngModel)]="model.editorData"
+  class="textEditor"
+  [editor]="Editor"
+  (change)="onChange($event)"
+></ckeditor>
+
+
+

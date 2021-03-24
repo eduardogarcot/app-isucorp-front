@@ -18,6 +18,14 @@
   background-color: #c2c3c4;
 }
 
+.textEditor{
+  width: 70%;
+  margin-top: 1%;
+  margin-left: 15%;
+  text-align: center;
+  display: inline-block;
+}
+
 .inputForm{
   margin: 1%;
   display: flex;

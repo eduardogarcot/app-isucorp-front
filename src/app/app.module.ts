@@ -9,7 +9,7 @@ import { ReservationItemComponent } from './reservation-item/reservation-item.co
 import { ContactsListComponent } from './contacts-list/contacts-list.component';
 import { ReservationListComponent } from './reservation-list/reservation-list.component';
 import { ContactFormComponent } from './contact-form/contact-form.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import {HttpClientModule} from '@angular/common/http';
 import { ReservationFormComponent } from './reservation-form/reservation-form.component';
@@ -39,13 +39,14 @@ import { PaginatorComponent } from './paginator/paginator.component';
     HttpClientModule,
     RouterModule.forRoot(
       [
-        { path: 'contacts-list', component: ContactsListComponent},
-        { path: '', component: ReservationListComponent},
-        { path: 'contact-form/:contactId', component: ContactFormComponent},
-        { path: 'reservation-form/:reservationId', component: ReservationFormComponent}
+        {path: 'contacts-list', component: ContactsListComponent},
+        {path: '', component: ReservationListComponent},
+        {path: 'contact-form/:contactId', component: ContactFormComponent},
+        {path: 'reservation-form/:reservationId', component: ReservationFormComponent}
       ]
-    )
-    ],
+    ),
+    FormsModule
+  ],
   providers: [
     ContactService,
     ReservationService

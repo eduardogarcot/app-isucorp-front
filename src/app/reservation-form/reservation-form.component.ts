@@ -12,15 +12,12 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 
 export class ReservationFormComponent implements OnInit {
-
   constructor(
     private service: ContactService,
     private serviceR: ReservationService,
     private route: ActivatedRoute,
     private  router: Router
-  ) {
-    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-  }
+  ) { }
 
   private parameter: number;
   form = new FormGroup( {
@@ -31,81 +28,95 @@ export class ReservationFormComponent implements OnInit {
   });
 
   onSubmit(): void {
+    // Get All Contacts and verify if the pair Name and PhoneNumber exist in the database, and if it is a valid pair,
+    //  get the corresponding contactId. Once it be available contactId, build the Reservation Object and make the POST request.
       this.service.getContacts()
         .subscribe(
-          response => {
-            let idContact = -1;
-            Object.keys(response).some(
-              (key) => {
-                const item = response[key];
-                if (item.name === this.form.get('name').value && item.phoneNumber === Number(this.form.get('phoneNumber').value)) {
-                  idContact = item.contactId;
-                  return true;
-                }
-              });
-            if (idContact > 0) {
-              const reservation = {
-                contactId: idContact,
-                reservationDate: this.form.get('reservationDate').value
-              };
-              if (this.parameter === 0) {
+          contactsResponse => {
+            const ContactId = this.GetContactIdByPairNameAndPhone(contactsResponse);
+            if (ContactId > 0)
+            {
+              const reservation = this.MappingFormsToRequestReservation(ContactId);
+              if (this.parameter === 0)
+              {
                 this.serviceR.postReservation(reservation)
                   .subscribe(
-                    () => {
-                      this.router.navigateByUrl('/');
-                    },
-                    error1 => {
-                      if (error1.status === 400 ){
-                        alert('An error has occurred, please check the contact name and the phone number'); }
-                      else { alert('An unexpected error occurred.'); }
-                    });
+                    () => this.RedirectTo('/') ,
+                    error => this.HandleError(error));
               }
-              else {
+              else
+              {
                 this.serviceR.updateReservation(reservation, this.parameter)
                   .subscribe(
-                    () => {
-                      this.router.navigateByUrl('/');
-                    },
-                    error1 => {
-                      if (error1.status === 400 ) {
-                        alert('An error occurred, please check the contact name and the phone number'); }
-                      else { alert('An unexpected error occurred.'); }
-                    });
+                    () => this.RedirectTo('/'),
+                    error => this.HandleError(error));
               }
-            } else {
+            }
+            else
+            {
               // tslint:disable-next-line:max-line-length
               alert('This pair Contact Name and Contact Number doesn\'t exist in the system. Please add the current Contact and try again.');
             }
           }
         );
   }
-
   ngOnInit(): void {
-    this.parameter = this.route.snapshot.paramMap.get('reservationId') === 'new' ? 0 : Number(this.route.snapshot.paramMap.get('reservationId'));
-    if (this.parameter === 0) {return ; }
-    this.serviceR.getReservation(this.parameter)
-      .subscribe(
-        response => {
-          this.service.getContact(response['contactId'])
-            .subscribe(
-              response2 => {
-                this.form.setValue(
-                  {
-                    name : response2['name'],
-                    phoneNumber : response2['phoneNumber'],
-                    reservationDate : response['reservationDate'].substring(0, 10)
-                  });
-              },
-              () => {
-                alert('An unexpected error occurred.'); }
-            );
+    this.UpdateParameterWithGetRouteParam();
+    if (this.parameter !== 0)
+    {
+      // Get Reservation by ID, then with ContactId get the contact data (name, phoneNumber) and set into the forms
+      this.serviceR.getReservation(this.parameter)
+        .subscribe(
+          reservationResponse => {
+            this.service.getContact(reservationResponse['contactId'])
+              .subscribe(
+                contactResponse => this.MappingResponseToFormFields(contactResponse, reservationResponse) ,
+                (error) => this.HandleError(error));
           },
-        error1 => {
-          if (error1.status === 404) { alert('This reservation doesn\'t exist in the System.'); }
-          else {alert('An unexpected error occurred.'); }
-          this.router.navigateByUrl('/');
+          error => {
+            this.HandleError(error);
+            this.RedirectTo('/');
+          }
+        );
+    }
+  }
+  RedirectTo(url: string): void{
+    this.router.navigateByUrl(url);
+  }
+  UpdateParameterWithGetRouteParam(): void{
+    this.parameter = this.route.snapshot.paramMap.get('reservationId') === 'new' ? 0 : Number(this.route.snapshot.paramMap.get('reservationId'));
+  }
+  MappingResponseToFormFields(contact, reservation): void{
+    this.form.setValue(
+      {
+        name : contact['name'],
+        phoneNumber : contact['phoneNumber'],
+        reservationDate : reservation['reservationDate']
+      });
+  }
+  MappingFormsToRequestReservation(ContactId: number): any{
+    return {
+      contactId: ContactId,
+      reservationDate: this.form.get('reservationDate').value
+    };
+  }
+  GetContactIdByPairNameAndPhone(Contacts): number{
+    let contactId = 0;
+    Object.keys(Contacts).some(
+      (key) => {
+        const item = Contacts[key];
+        if (item.name === this.form.get('name').value && item.phoneNumber === Number(this.form.get('phoneNumber').value))
+        {
+          contactId = item.contactId;
+          return true;
         }
-      );
+      });
+    return contactId;
+  }
+  HandleError(error): void{
+    if (error.status === 404) { alert('This reservation doesn\'t exist in the System.'); }
+    else if (error.status === 400 ){ alert('An error has occurred, please check the contact name and the phone number'); }
+    else { alert('An unexpected error occurred.'); }
   }
 }
 

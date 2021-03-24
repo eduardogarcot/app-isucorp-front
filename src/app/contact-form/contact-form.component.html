@@ -54,9 +54,6 @@
     <h4 *ngIf="form.get('birthDate').errors?.isDateAfterToday && form.get('birthDate').touched" > Birth Date is invalid. The Birth Date cannot be later than today</h4>
     <h4 *ngIf="form.get('birthDate').errors?.required && form.get('birthDate').touched"> Birth Date is required</h4>
   </div>
-  <div class="textEditor">
-    <ckeditor [editor]="Editor" data="<p>Please, text here!</p>"></ckeditor>
-  </div>
     <div class="container button">
       <button class="btn" type="submit" [disabled]="!form.valid">Submit</button>
     </div>

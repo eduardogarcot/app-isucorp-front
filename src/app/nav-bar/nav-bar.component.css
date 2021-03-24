@@ -1,4 +1,4 @@
-.customNavBar{
+.company-banner{
   width:100%;
   background-color: #333333;
   display: flex;
@@ -18,16 +18,8 @@
   flex-direction: column;
 
 }
-@media screen and (max-width: 768px){
-  .companyName{
-    font-size: larger;
-  }
-  .nameDescription{
-    display: none;
-  }
-}
 
-.menuNav{
+.application-nav{
   display: flex;
   background-color: white;
   justify-content: center;
@@ -35,15 +27,22 @@
   align-content: space-evenly;
   flex-direction: row;
 }
+.menuName{
+  width: 19%;
+  color: crimson;
+  font-size: x-large;
+  margin-left: 1%;
+  text-align: center;
+}
 .menuDescription{
-  margin:1%;
+  margin-left:1%;
   width: 50%;
   font-size: smaller;
 }
-.menuName{
-  width: 20%;
-  color: crimson;
-  font-size: x-large;
+
+.button-menu-nav{
+  display: flex;
+  justify-content: center;
 }
 .menuBtn{
   width: 15%;
@@ -56,3 +55,64 @@
   font-weight: lighter ;
   margin: 1%;
 }
+
+@media screen and (max-width: 720px){
+  .company-banner{
+    width:100%;
+    background-color: #333333;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  .menuName{
+    width: auto;
+    font-size: 1.5rem;
+  }
+  .companyName{
+    color: #eeeeee;
+    font-size: 1.5rem;
+  }
+  .nameDescription, .application-nav{
+    visibility: hidden;
+    display: none;
+  }
+  .button-menu-nav{
+    display: flex;
+    justify-content: center;
+  }
+  .menuBtn{
+    width: 15%;
+    color: white;
+    background-color: #c2c3c4;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+    padding: 1%;
+    font-weight: lighter ;
+    margin: 1%;
+  }
+}
+@media screen and (max-width: 600px){
+  .menuName, .companyName{ font-size: 1rem; }
+  .companyName{
+    color: #eeeeee;
+    font-size: 1.5rem;
+  }
+  .button-menu-nav{
+    display: flex;
+    justify-content: center;
+  }
+  .menuBtn{
+    width: 23%;
+    color: white;
+    background-color: #c2c3c4;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+    padding: 1%;
+    font-weight: lighter ;
+    margin: 1%;
+  }
+}
+
+

@@ -18,7 +18,10 @@
   flex-direction: column;
 
 }
-
+.menuName-banner{
+  visibility:hidden;
+  display:none;
+}
 .application-nav{
   display: flex;
   background-color: white;
@@ -64,10 +67,14 @@
     align-items: center;
     justify-content: space-around;
   }
-  .menuName{
-    width: auto;
+  .menuName-banner{
+    visibility: visible;
+    display: flex;
+    color: crimson;
     font-size: 1.5rem;
+    text-align: center;
   }
+
   .companyName{
     color: #eeeeee;
     font-size: 1.5rem;
@@ -93,7 +100,7 @@
   }
 }
 @media screen and (max-width: 600px){
-  .menuName, .companyName{ font-size: 1rem; }
+  .menuName-banner, .companyName{ font-size: 1rem; }
   .companyName{
     color: #eeeeee;
     font-size: 1.5rem;

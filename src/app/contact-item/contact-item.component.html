@@ -6,7 +6,7 @@
   <p class="contact">{{contact.phoneNumber}}</p>
   <p class="contact">{{contact.birthDate | date: 'MMM d, y' }}</p>
   <div class="contact-buttons">
-    <div class="button editBtn" [routerLink]="['/contact-form',contact.contactId]" >Edit</div>
-    <div class="button deleteBtn" (click)="onDeleteContact(contact)">Delete</div>
+    <div i18n="Edit Button|Button for get a edit Contact form@@contactEditButton" class="button editBtn" [routerLink]="['/contact-form',contact.contactId]" >Edit</div>
+    <div i18n="Delete Button|Button for delete a Contact@@contactDeleteButton" class="button deleteBtn" (click)="onDeleteContact(contact)">Delete</div>
   </div>
 </div>

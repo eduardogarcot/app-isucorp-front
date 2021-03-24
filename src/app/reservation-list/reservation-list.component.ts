@@ -36,80 +36,83 @@ export class ReservationListComponent implements OnInit {
     this.service.deleteReservation(reservation.reservationId)
       .subscribe(
         () => {
-        const index = this.reservations.indexOf(reservation);
-        this.reservations.splice(index, 1);
-      });
+          const index = this.reservations.indexOf(reservation);
+          this.reservations.splice(index, 1);
+          this.Paginate(); },
+        error => this.HandleError(error));
   }
-
   onPaginateTo(nextPage: number): void{
     this.currentPage = nextPage;
-    this.reservationsToPage = ArrayManipulations.selectItemsFromPage(this.reservations, this.numberOfItemsInAPage, nextPage);
+    this.Paginate();
   }
-
   onFavoriteReservation(reservation): void{
     reservation.isFavorite = !reservation.isFavorite;
-    reservation.reservationDate.setHours((reservation.reservationDate.getHours() - 5) % 24);
     this.service.updateReservation(reservation, reservation.reservationId)
       .subscribe(
         () => {},
-        () => {
+        (error) => {
           reservation.isFavorite = !reservation.isFavorite;
-          alert('An unexpected error occurred');
+          this.HandleError(error);
         });
   }
-
   onRateReservation(reservation): void{
     const oldRate = reservation.rate;
     reservation.rate = (oldRate + 1) % 5;
     this.service.updateReservation(reservation, reservation.reservationId)
       .subscribe(
         () => {},
-        () => {
+        (error) => {
           reservation.rate = oldRate;
-          alert('An unexpected error occurred');
+          this.HandleError(error);
         });
   }
-
-  // tslint:disable-next-line:max-line-length
   ngOnInit(): void {
+    // First of all, Get all Reservations, then for each reservation get the associate Contact Data
+    // Then, in the last iteration inside the second observable we charge and update the ReservationsList.
     this.service.getReservations()
       .subscribe(
-        response => {
-          let value = Object.keys(response).length;
-          const newReservations = [];
-          Object.keys(response).map(
-            key => {
-              const item = response[key];
-              this.serviceC.getContact(item.contactId)
-                .subscribe(
-                  response2 => {
-                    const reservation = {
-                        contactName: response2['name'], reservationId: item.reservationId,
-                        reservationDate : new Date(item.reservationDate),
-                        isFavorite: item.isFavorite, rate: item.rate, contactId: item.contactId};
-                    newReservations.push(reservation as Reservation);
-                    value--;
-                    if (value === 0) {
-                      this.reservations = newReservations;
-                      // tslint:disable-next-line:max-line-length
-                      this.reservationsToPage = ArrayManipulations.selectItemsFromPage(this.reservations, this.numberOfItemsInAPage, this.currentPage);
-                    }
-                  },
-                  () => {
-                    alert('An unexpected error occurred');
-                  }
-                  );
-            });
-        },
-        () => {
-          alert('An Unexpected error occurred');
-        });
+        reservationsResponse => this.SetAllMappedReservations(reservationsResponse),
+        (error) => this.HandleError(error));
     this.form = new FormGroup({sortOrder: new FormControl()});
     this.form.controls['sortOrder'].valueChanges.subscribe(val => {
       this.reservations = ArrayManipulations.sortItemsBy(this.reservations, val);
-      // tslint:disable-next-line:max-line-length
-      this.reservationsToPage = ArrayManipulations.selectItemsFromPage(this.reservations, this.numberOfItemsInAPage, this.currentPage);
+      this.Paginate();
     });
-    }
-
+  }
+  SetAllMappedReservations(reservationsResponse): void{
+    let stopCounter = Object.keys(reservationsResponse).length;
+    const newReservations = [];
+    Object.keys(reservationsResponse).map(
+      key => {
+        const reservationItem = reservationsResponse[key];
+        this.serviceC.getContact(reservationItem.contactId)
+          .subscribe(
+            contactItem => {
+              newReservations.push(this.MapperResponsesToReservations(contactItem, reservationItem));
+              stopCounter--;
+              if (stopCounter === 0) {
+                this.reservations = newReservations;
+                this.Paginate();
+              }},
+            (error) => this.HandleError(error));
+      });
+  }
+  HandleError(error): void {
+    if (error.status === 404) {alert('The element doesn\'t exist in the system'); }
+    else { alert('An unexpected error occurred'); }
+  }
+  Paginate(): void{
+    this.reservationsToPage = ArrayManipulations.selectItemsFromPage(this.reservations, this.numberOfItemsInAPage, this.currentPage);
+  }
+  MapperResponsesToReservations(ContactResponse, ReservationResponse): Reservation{
+    return {
+      reservationId: ReservationResponse.reservationId,
+      cratedDate: ReservationResponse.cratedDate,
+      reservationDate : ReservationResponse.reservationDate,
+      isFavorite: ReservationResponse.isFavorite,
+      rate: ReservationResponse.rate,
+      description: ReservationResponse.description,
+      contactId: ReservationResponse.contactId,
+      contactName: ContactResponse.name};
+  }
 }

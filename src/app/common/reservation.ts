@@ -6,4 +6,5 @@ export interface Reservation {
   rate: number;
   contactId: number;
   contactName: string;
+  description: string;
 }

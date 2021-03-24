@@ -90,6 +90,12 @@
           "configurations": {
             "production": {
               "browserTarget": "app-isucorp-front:build:production"
+            },
+            "fr": {
+              "browserTarget": "angular-internationalization-example:build:fr"
+            },
+            "es": {
+              "browserTarget": "angular-internationalization-example:build:es"
             }
           }
         },

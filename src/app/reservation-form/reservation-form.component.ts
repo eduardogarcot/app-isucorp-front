@@ -5,7 +5,9 @@ import {ContactService} from '../services/contact.service';
 import {ReservationService} from '../services/reservation.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import * as Editor from '../../ckeditor5-custom-build/build/ckeditor';
 import {ChangeEvent} from '@ckeditor/ckeditor5-angular';
+
 
 @Component({
   selector: 'app-reservation-form',
@@ -22,9 +24,64 @@ export class ReservationFormComponent implements OnInit {
   ) { }
 
   private parameter: number;
-  public Editor = ClassicEditor;
+  public Editor = Editor;
+  public config =
+    {
+      toolbar: {
+        items: [
+          'heading', '|',
+          'fontfamily', 'fontsize', '|',
+          'alignment', '|',
+          'fontColor', 'fontBackgroundColor', '|',
+          'bold', 'italic', 'strikethrough', 'underline', 'subscript', 'superscript', '|',
+          'link', '|',
+          'outdent', 'indent', '|',
+          'bulletedList', 'numberedList', 'todoList', '|',
+          'code', 'codeBlock', '|',
+          'insertTable', '|',
+          'uploadImage', 'blockQuote', '|',
+          'undo', 'redo']
+      },
+      language: 'en',
+      table: {
+        contentToolbar: [
+          'tableColumn',
+          'tableRow',
+          'mergeTableCells'
+        ]
+      },
+      licenseKey: '',
+  };
   public model = {
-    editorData: '' };
+    editorData: '',
+    config:
+      {
+        toolbar: {
+          items: [
+            'heading', '|',
+            'fontfamily', 'fontsize', '|',
+            'alignment', '|',
+            'fontColor', 'fontBackgroundColor', '|',
+            'bold', 'italic', 'strikethrough', 'underline', 'subscript', 'superscript', '|',
+            'link', '|',
+            'outdent', 'indent', '|',
+            'bulletedList', 'numberedList', 'todoList', '|',
+            'code', 'codeBlock', '|',
+            'insertTable', '|',
+            'uploadImage', 'blockQuote', '|',
+            'undo', 'redo']
+        },
+        language: 'en',
+        table: {
+          contentToolbar: [
+            'tableColumn',
+            'tableRow',
+            'mergeTableCells'
+          ]
+        },
+        licenseKey: '',
+      }
+  };
   form = new FormGroup( {
     name: new FormControl('', [Validators.required]),
     phoneNumber: new FormControl('', [Validators.required, InputItemsValidator.isAPhoneNumber,

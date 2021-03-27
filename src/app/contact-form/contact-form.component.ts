@@ -20,7 +20,6 @@ export class ContactFormComponent implements OnInit {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
   private parameter: number;
-  public Editor = ClassicEditor;
   form = new FormGroup( {
     name: new FormControl('', [Validators.required]),
     contactType: new FormControl('', [Validators.required]),

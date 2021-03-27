@@ -24,8 +24,8 @@ export class ReservationListComponent implements OnInit {
   public reservationsToPage: Reservation[];
   public form: FormGroup;
   public SortCategory = [
-    {value: 'name',   label: 'By Name Ascending'},
-    {value: 'name r', label: 'By Name Descending'},
+    {value: 'contactName',   label: 'By Name Ascending'},
+    {value: 'contactName r', label: 'By Name Descending'},
     {value: 'reservationDate',   label: 'By Date Ascending'},
     {value: 'reservationDate r', label: 'By Date Descending'},
     {value: 'rate', label: 'By Rate Ascending'},

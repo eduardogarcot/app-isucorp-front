@@ -14,7 +14,7 @@ import {ArrayManipulations} from '../common/listsManipulations';
 export class ReservationListComponent implements OnInit {
 
   constructor(private service: ReservationService, private serviceC: ContactService) {
-    this.numberOfItemsInAPage = 2;
+    this.numberOfItemsInAPage = 5;
     this.currentPage = 1;
   }
 

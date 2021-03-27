@@ -50,7 +50,7 @@ export class ContactsListComponent implements OnInit{
     this.contactsToPage = ArrayManipulations.selectItemsFromPage(this.contacts, this.numberOfItemsInAPage, this.currentPage);
   }
   ngOnInit(): void {
-    this.numberOfItemsInAPage = 2;
+    this.numberOfItemsInAPage = 5;
     this.currentPage = 1;
     this.service.getContacts()
       .subscribe(

@@ -14,15 +14,15 @@
         "locales": {
           "fr": {
             "translation": "src/locale/messages.fr.xlf",
-            "baseHref": "/fr/"
+            "baseHref": ""
           },
           "en": {
             "translation": "src/locale/messages.en.xlf",
-            "baseHref": "/en/"
+            "baseHref": ""
           },
           "es": {
             "translation": "src/locale/messages.es.xlf",
-            "baseHref": "/es/"
+            "baseHref": ""
           }
         }
       },
@@ -77,19 +77,19 @@
             },
             "fr": {
               "localize": ["fr"],
-              "baseHref": "/fr/",
+              "baseHref": "/fr",
               "outputPath": "dist/under-construction-fr/",
               "i18nMissingTranslation": "error"
             },
             "en": {
               "localize": ["en"],
-              "baseHref": "/en/",
+              "baseHref": "/en",
               "outputPath": "dist/under-construction-en/",
               "i18nMissingTranslation": "error"
             },
             "es": {
               "localize": ["es"],
-              "baseHref": "/es/",
+              "baseHref": "/es",
               "outputPath": "dist/under-construction-es/",
               "i18nMissingTranslation": "error"
             }

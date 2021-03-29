@@ -96,6 +96,10 @@
           <context context-type="sourcefile">src/app/contacts-list/contacts-list.component.html</context>
           <context context-type="linenumber">8</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/reservation-list/reservation-list.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="9d254afa1f7e50154c67987bca862201d0c4ba78" datatype="html">
         <source>Contact Name ...</source>
@@ -107,7 +111,6 @@
           <context context-type="sourcefile">src/app/reservation-form/reservation-form.component.html</context>
           <context context-type="linenumber">10</context>
         </context-group>
-        <note priority="1" from="description">Contact Name placeholder</note>
       </trans-unit>
       <trans-unit id="d0139a4b47bcc8b15e6c544f7d72be72cd0e9371" datatype="html">
         <source>Contact Type</source>

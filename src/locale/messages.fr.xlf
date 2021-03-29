@@ -107,6 +107,10 @@
           <context context-type="sourcefile">src/app/contacts-list/contacts-list.component.html</context>
           <context context-type="linenumber">8</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/reservation-list/reservation-list.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="9d254afa1f7e50154c67987bca862201d0c4ba78" datatype="html">
         <source>Contact Name ...</source>
@@ -119,7 +123,6 @@
           <context context-type="sourcefile">src/app/reservation-form/reservation-form.component.html</context>
           <context context-type="linenumber">10</context>
         </context-group>
-        <note priority="1" from="description">Contact Name placeholder</note>
       </trans-unit>
       <trans-unit id="d0139a4b47bcc8b15e6c544f7d72be72cd0e9371" datatype="html">
         <source>Contact Type</source>
@@ -138,17 +141,17 @@
         </context-group>
       </trans-unit>
       <trans-unit id="7da79448a563bc9fb21130def26ea98fb11f1462" datatype="html">
-        <source>Tipo de Contacto 2</source>
+        <source>Contact Type 2</source>
         <target>Type de contact 2</target>
-        <context-group purpose="location">
+                <context-group purpose="location">
           <context context-type="sourcefile">src/app/contact-form/contact-form.component.html</context>
           <context context-type="linenumber">24</context>
         </context-group>
       </trans-unit>
       <trans-unit id="be4f755d6155ed632e2e62964a6f03ea1bf6dd17" datatype="html">
-        <source>Tipo de Contacto 3</source>
+        <source>Contact Type 3</source>
         <target>Type de contact 3</target>
-        <context-group purpose="location">
+                <context-group purpose="location">
           <context context-type="sourcefile">src/app/contact-form/contact-form.component.html</context>
           <context context-type="linenumber">25</context>
         </context-group>
@@ -294,10 +297,8 @@
         </context-group>
       </trans-unit>
       <trans-unit id="3ef7c650c34a3e6ef8e52d71312682a471f5c999" datatype="html">
-        <source>
-      Reservation Date invalid. The reservation date cannot be earlier than actual time
-    </source>
-    <target>La date de réservation n'est pas valide. Elle ne peut pas être antérieure à l'heure réelle.</target>
+        <source> Reservation Date invalid. The reservation date cannot be earlier than actual time </source>
+        <target>La date de réservation n'est pas valide. Elle ne peut pas être antérieure à l'heure réelle.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/reservation-form/reservation-form.component.html</context>
           <context context-type="linenumber">44</context>

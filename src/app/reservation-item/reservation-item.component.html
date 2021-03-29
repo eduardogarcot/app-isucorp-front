@@ -7,7 +7,7 @@
     <p class="rate"(click)="onRateReservation(reservation)">{{reservation.rate}}</p>
   </div>
   <div class="reservation-favorite">
-    <p class="favorite-label">Add to Fav+</p>
+    <p i18n class="favorite-label">Add to Fav+</p>
     <img *ngIf="reservation.isFavorite" (click)="onFavoriteReservation(reservation)" src="../../assets/img/favorite-24px.svg">
     <img *ngIf="!reservation.isFavorite" (click)="onFavoriteReservation(reservation)" src="../../assets/img/favorite_border-24px.svg">
   </div>

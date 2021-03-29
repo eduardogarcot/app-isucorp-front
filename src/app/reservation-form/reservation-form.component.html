@@ -7,7 +7,8 @@
         formControlName="name"
         id="name"
         class="input Name"
-        placeholder="Contact Name ...">
+        placeholder="Contact Name ..."
+      i18n-placeholder="Contact Name placeholder">
     </div>
     <div class="inputForm">
       <img src="../../assets/img/phone.png" alt="">
@@ -17,6 +18,7 @@
         id="phoneNumber"
         class="input Phone"
         placeholder="Phone Number:"
+        i18n-placeholder="Phone Number Placeholder"
       >
     </div>
     <div class="inputForm">
@@ -28,30 +30,26 @@
         type="text"
         formControlName="reservationDate"
         id="reservationDate"
-        class="input Date">
+        class="input Date"
+      i18n-placeholder="Reservation Date placeholder">
     </div>
   </div>
   <div class="alert-danger" *ngIf="!form.valid && !form.untouched">
-    <h4 *ngIf="form.get('name').errors?.required && form.get('name').touched">Name is Required</h4>
-    <h4 *ngIf="form.get('phoneNumber').errors?.required && form.get('phoneNumber').touched">Phone Number is Required</h4>
-    <h4 *ngIf="form.get('phoneNumber').errors?.isNotAPhone && form.get('phoneNumber').touched ">This number is not valid. Please fill the form again</h4>
-    <h4 *ngIf="form.get('phoneNumber').errors?.minlength">Number Phone requires at least {{form.get('phoneNumber').errors.minlength.requiredLength}} numbers</h4>
-    <h4 *ngIf="form.get('phoneNumber').errors?.maxlength">Number Phone requires no more than {{form.get('phoneNumber').errors.maxlength.requiredLength}} numbers</h4>
-    <h4 *ngIf="form.get('reservationDate').errors?.required && form.get('reservationDate').touched"> Reservation Date is required</h4>
-    <h4 *ngIf="form.get('reservationDate').errors?.isDateAfterToday && form.get('reservationDate').touched">
+    <h4 i18n *ngIf="form.get('name').errors?.required && form.get('name').touched">Name is Required</h4>
+    <h4 i18n *ngIf="form.get('phoneNumber').errors?.required && form.get('phoneNumber').touched">Phone Number is Required</h4>
+    <h4 i18n *ngIf="form.get('phoneNumber').errors?.isNotAPhone && form.get('phoneNumber').touched ">This number is not valid. Please fill the form again</h4>
+    <h4 i18n *ngIf="form.get('phoneNumber').errors?.minlength">Number Phone requires at least {{form.get('phoneNumber').errors.minlength.requiredLength}} numbers</h4>
+    <h4 i18n *ngIf="form.get('phoneNumber').errors?.maxlength">Number Phone requires no more than {{form.get('phoneNumber').errors.maxlength.requiredLength}} numbers</h4>
+    <h4 i18n *ngIf="form.get('reservationDate').errors?.required && form.get('reservationDate').touched"> Reservation Date is required</h4>
+    <h4 i18n *ngIf="form.get('reservationDate').errors?.isDateAfterToday && form.get('reservationDate').touched">
       Reservation Date invalid. The reservation date cannot be earlier than actual time
     </h4>
  </div>
   <div class="container button">
-    <button class="btn" type="submit" [disabled]="!form.valid">Submit</button>
+    <button i18n class="btn" type="submit" [disabled]="!form.valid">Submit</button>
   </div>
 </form>
-<ckeditor
-  [(ngModel)]="model.editorData"
-  class="textEditor"
-  [editor]="Editor"
-  (change)="onChange($event)"
-></ckeditor>
+<ckeditor class="textEditor" [(ngModel)]="model.editorData" [editor]="Editor" [config]="model.config" data="<p>Hello, world!</p>"></ckeditor>
 
 
 

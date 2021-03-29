@@ -5,7 +5,7 @@
       id="sortOrder"
       class="input-sortOrder"
     >
-      <option [ngValue]="null" [disabled]="true" >Sort By</option>
+      <option [ngValue]="null" [disabled]="true" i18n>Sort By</option>
       <option *ngFor="let category of SortCategory" [ngValue]="category.value">{{category.label}}</option>
     </select>
   </form>

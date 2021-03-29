@@ -7,7 +7,9 @@
           formControlName="name"
           id="name"
           class="input Name"
-          placeholder="Contact Name ...">
+          placeholder="Contact Name ..."
+          i18n-placeholder
+        >
       </div>
       <div class="inputForm">
         <img src="../../assets/img/type.png" alt="">
@@ -17,10 +19,10 @@
           id="contactType"
           class="input Type"
         >
-          <option value="" disabled selected hidden>Contact Type</option>
-          <option value="0">Contact Type 1</option>
-          <option value="1">Contact Type 2</option>
-          <option value="2">Contact Type 3</option>
+          <option value="" disabled selected hidden i18n>Contact Type</option>
+          <option value="0" i18n>Contact Type 1</option>
+          <option value="1" i18n>Contact Type 2</option>
+          <option value="2" i18n>Contact Type 3</option>
         </select>
       </div>
       <div class="inputForm">
@@ -30,7 +32,8 @@
           formControlName="phoneNumber"
           id="phoneNumber"
           class="input Phone"
-          placeholder="Phone:    -    -   " >
+          placeholder="Phone Number"
+          i18n-placeholder="Phone Number placeholder">
       </div>
       <div class="inputForm">
         <img src="../../assets/img/calendar.png" alt="">
@@ -41,20 +44,21 @@
           type="text"
           formControlName="birthDate"
           id="birthDate"
-          class="input Date">
+          class="input Date"
+          i18n-placeholder="Birth Date">
       </div>
     </div>
   <div class="alert-danger" *ngIf="!form.valid && !form.untouched">
-    <h4 *ngIf="form.get('name').errors?.required && form.get('name').touched">Name is Required</h4>
-    <h4 *ngIf="form.get('contactType').errors?.required && form.get('contactType').touched">Contact Type is Required</h4>
-    <h4 *ngIf="form.get('phoneNumber').errors?.required && form.get('phoneNumber').touched">Phone Number is Required</h4>
-    <h4 *ngIf="form.get('phoneNumber').errors?.isNotAPhone && form.get('phoneNumber').touched ">This number is not valid. Please fill the form again</h4>
-    <h4 *ngIf="form.get('phoneNumber').errors?.minlength">Number Phone requires at least {{form.get('phoneNumber').errors.minlength.requiredLength}} numbers</h4>
-    <h4 *ngIf="form.get('phoneNumber').errors?.maxlength">Number Phone requires no more than {{form.get('phoneNumber').errors.maxlength.requiredLength}} numbers</h4>
-    <h4 *ngIf="form.get('birthDate').errors?.isDateAfterToday && form.get('birthDate').touched" > Birth Date is invalid. The Birth Date cannot be later than today</h4>
-    <h4 *ngIf="form.get('birthDate').errors?.required && form.get('birthDate').touched"> Birth Date is required</h4>
+    <h4 *ngIf="form.get('name').errors?.required && form.get('name').touched" i18n>Name is Required</h4>
+    <h4 *ngIf="form.get('contactType').errors?.required && form.get('contactType').touched" i18n>Contact Type is Required</h4>
+    <h4 *ngIf="form.get('phoneNumber').errors?.required && form.get('phoneNumber').touched" i18n>Phone Number is Required</h4>
+    <h4 *ngIf="form.get('phoneNumber').errors?.isNotAPhone && form.get('phoneNumber').touched " i18n>This number is not valid. Please fill the form again</h4>
+    <h4 *ngIf="form.get('phoneNumber').errors?.minlength" i18n>Number Phone requires at least {{form.get('phoneNumber').errors.minlength.requiredLength}} numbers</h4>
+    <h4 *ngIf="form.get('phoneNumber').errors?.maxlength" i18n>Number Phone requires no more than {{form.get('phoneNumber').errors.maxlength.requiredLength}} numbers</h4>
+    <h4 *ngIf="form.get('birthDate').errors?.isDateAfterToday && form.get('birthDate').touched" i18n> Birth Date is invalid. The Birth Date cannot be later than today</h4>
+    <h4 *ngIf="form.get('birthDate').errors?.required && form.get('birthDate').touched" i18n> Birth Date is required</h4>
   </div>
     <div class="container button">
-      <button class="btn" type="submit" [disabled]="!form.valid">Submit</button>
+      <button class="btn" type="submit" [disabled]="!form.valid" i18n>Submit</button>
     </div>
 </form>

@@ -14,7 +14,7 @@ import {ArrayManipulations} from '../common/listsManipulations';
 export class ReservationListComponent implements OnInit {
 
   constructor(private service: ReservationService, private serviceC: ContactService) {
-    this.numberOfItemsInAPage = 2;
+    this.numberOfItemsInAPage = 5;
     this.currentPage = 1;
   }
 
@@ -24,8 +24,8 @@ export class ReservationListComponent implements OnInit {
   public reservationsToPage: Reservation[];
   public form: FormGroup;
   public SortCategory = [
-    {value: 'name',   label: 'By Name Ascending'},
-    {value: 'name r', label: 'By Name Descending'},
+    {value: 'contactName',   label: 'By Name Ascending'},
+    {value: 'contactName r', label: 'By Name Descending'},
     {value: 'reservationDate',   label: 'By Date Ascending'},
     {value: 'reservationDate r', label: 'By Date Descending'},
     {value: 'rate', label: 'By Rate Ascending'},

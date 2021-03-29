@@ -16,6 +16,10 @@
             "translation": "src/locale/messages.fr.xlf",
             "baseHref": ""
           },
+          "en": {
+            "translation": "src/locale/messages.en.xlf",
+            "baseHref": ""
+          },
           "es": {
             "translation": "src/locale/messages.es.xlf",
             "baseHref": ""
@@ -26,6 +30,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "localize": true,
             "outputPath": "dist/app-isucorp-front",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -72,11 +77,19 @@
             },
             "fr": {
               "localize": ["fr"],
+              "baseHref": "/fr",
               "outputPath": "dist/under-construction-fr/",
+              "i18nMissingTranslation": "error"
+            },
+            "en": {
+              "localize": ["en"],
+              "baseHref": "/en",
+              "outputPath": "dist/under-construction-en/",
               "i18nMissingTranslation": "error"
             },
             "es": {
               "localize": ["es"],
+              "baseHref": "/es",
               "outputPath": "dist/under-construction-es/",
               "i18nMissingTranslation": "error"
             }
@@ -93,6 +106,9 @@
             },
             "fr": {
               "browserTarget": "app-isucorp-front:build:fr"
+            },
+            "en": {
+              "browserTarget": "app-isucorp-front:build:en"
             },
             "es": {
               "browserTarget": "app-isucorp-front:build:es"
